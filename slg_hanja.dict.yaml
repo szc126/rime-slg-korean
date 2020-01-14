@@ -1,0 +1,9 @@
+# Rime dictionary
+# encoding: utf-8
+---
+name: "slg_hanja"
+version: "1.0.0"
+sort: "by_weight"
+import_tables:
+  - ko__gyoyugyong_gicho_hanja
+...

@@ -1,0 +1,69 @@
+# Rime schema
+# encoding: utf-8
+
+__include: "soolegi_yethangeul.schema:/"
+
+schema:
+  schema_id: "slg_dubeolsik_yethangeul"
+  name: "SLG 두벌식 옛한글"
+  version: "1.0.0"
+
+speller:
+  alphabet: "~qwertyuiopasdfghjklzxcvbnm`'QWERTYUIOPASDFGHJKLZXCVBNM."
+  initials: "~qwertyuiopasdfghjklzxcvbnm`'QWERTYUIOPASDFGHJKLZXCVBNM"
+  algebra:
+    - "xform/^~~//"
+
+    # from `soolegi_yethangeul.custom.yaml`
+    - "xform/^([BCDFGHKLMNPQRSTVWXZ]+`?)$/$1./" # full stop for jungseong
+    - "xlit BCDFGHKLMNPQRSTVWXZ bcdfghklmnpqrstvwxz"
+    - "xform/^(~.+)$/$1./" # use a full stop to end compat jamo
+
+    - "xlit j !"
+    - "xlit bzdgsmnqlhktcpoeaiuyxrvfw qwertasdfgzxcvhjklnm23456"
+    # kbRow 1....2....3...2...3.X.... 1....2....3...2...3.X....
+    #       C             V     yetHan
+
+    - "xform/qq/Q/" # ㅃ、Shiftㅂ
+    - "xform/ww/W/" # ㅉ、Sㅈ
+    - "xform/ee/E/" # ㄸ、Sㄷ
+    - "xform/rr/R/" # ㄲ、Sㄱ
+    - "xform/tt/T/" # ㅆ、Sㅅ
+
+    - "xform/xx/X/" # 쌍ㅌ、Sㅌ
+    - "xform/ss/S/" # 쌍ㄴ、Sㄴ
+    - "xform/aa/A/" # 쌍ㅁ、Sㅁ
+    - "xform/gg/G/" # 쌍ㅎ、Sㅎ
+    - "xform/dd/D/" # 쌍ㅇ、Sㅇ
+    - "xform/ff/F/" # 쌍ㄹ、Sㄹ
+
+    - "xform/33/fdd/" # 가벼운ㄹ、ㄹㅇㅇ
+    - "xform/44/Qdd/" # 가벼운ㅃ、Sㅂㅇㅇ、ㅃㅇㅇ
+    #- "xform/55//" # choseong filler # XXX
+    #- "xform/!!//" # jungseong filler # XXX
+
+    - "xform/d`/dd/" # 옛ㅇ、ㅇㅇ
+    - "xform/2/gg/" # 여린ㅎ、ㅎㅎ
+    - "xform/3/tt/" # 반ㅅ、ㅅㅅ
+    - "xform/4/qdd/" # 가벼운ㅂ、ㅂㅇㅇ
+    - "xform/5/vdd/" # 가벼운ㅍ、ㅍㅇㅇ
+    - "xform/6/add/" # 가벼운ㅁ、ㅁㅇㅇ
+
+    - "xform/!h/y/" # ㅛ
+    - "xform/!j/u/" # ㅠ
+    - "xform/!k/i/" # ㅑ
+    - "xform/kl/o/" # ㅐ
+    - "xform/il/O/" # ㅒ
+    - "xform/jl/p/" # ㅔ
+    - "xform/!p/P/" # ㅖ
+    - "xform/!n/b/" # ㅠ
+
+    - "xform/[*]/kk/" # 아래아、S아
+    - "xform/kkkk/KK/" # 쌍아래아、S아S아
+    - "xform/lkk/KKK/" # 이아래아、S아S아S아
+    - "xform/mm/M" # 쌍으、S으
+
+translator:
+  prism: slg_dubeolsik_yethangeul
+  preedit_format:
+    - Null

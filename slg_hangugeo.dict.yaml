@@ -1,0 +1,13 @@
+# Rime dictionary
+# encoding: utf-8
+---
+name: "slg_hangugeo"
+version: "1.0.0"
+sort: "by_weight"
+import_tables:
+  - ko__hangugeo_hakseubyong_eohwi
+  - ko__unicode_hangul_compatibility_jamo
+  - ko__unicode_hangul_jamo
+  - ko__unicode_hangul_syllables
+...
+ㅠㅠ	qju qju

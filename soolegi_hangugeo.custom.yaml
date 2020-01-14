@@ -1,0 +1,51 @@
+patch:
+  "speller/algebra":
+    - "xform/::.*//"
+
+    - "xform/^q//"
+
+    - "xform/ai/v/"
+    - "xform/ei/w/"
+    # mnemonics:
+    # - compare shape of V to shape of A
+    # - compare shape of W to shape of E; note that W is related to V
+
+    #- "xform/jo/oo/"
+    #- "xform/ja/aa/"
+    #- "xform/ju/uu/"
+    #- "xform/je/ee/"
+    #- "xform/jv/vv/"
+    #- "xform/jw/ww/"
+
+    - "xform/^~(g|gg|gs|n|nz|nh|d|dd|l|lg|lm|lb|ls|lt|lp|lh|m|b|bb|bs|s|ss|q|z|zz|c|k|t|p|h)$/$1/"
+
+  "translator/preedit_format":
+    - "xform/v/ai/"
+    - "xform/w/ei/"
+
+  "translator/comment_format":
+    #- "xlit| |.|"
+    #- "xform/q([jyioaue])/$1/"
+    #- "xform/([*yioaue])\\.([gkqdtnbpmzcsxhlr`]+)(?=[*yioaue])/$1$2/"
+
+    # いい子はマネしないでね
+    # discard of non-explanations (hangeul readings)
+    - "xform/^[ a-z~A-Z*`']+:://"
+    - "xform/==[ a-z~A-Z*`']+:://"
+    - "xform/==[ a-z~A-Z*`']*$//"
+    # format explanation
+    - "xform/[[]/【/"
+    - "xform/[]]/】/"
+    - "xform/;;/◇/"
+    - "xform/__/ /"
+
+    # keep compat jamo readings
+    # as in the suggestion list that appears
+    # when you input ~
+    # otherwise, discard non-explanations
+    - "xform/^(?:(~~?[a-zA-Z*`']+)|[ a-z~A-Z*`']+)$/$1/"
+
+    # TEST: sinaibesysinaibesy
+    # "bus" of the first gloss
+    # should not be deleted together with
+    # the Latn of the second "si nai"

@@ -1,0 +1,102 @@
+# Rime schema
+# encoding: utf-8
+
+schema:
+  schema_id: "soolegi_hangugeo"
+  name: "쓰레기 한국어"
+  version: "1.0.0"
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ "가", "A" ]
+  - name: full_shape
+    reset: 0
+    states: [ "半", "全" ]
+  - name: ascii_punct
+    states: [ "。，", "．，" ]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+    #- affix_segmentor@hanja
+    #- affix_segmentor@old_korean
+  translators:
+    - punct_translator
+    - script_translator
+    #- table_translator@hanja
+    #- script_translator@old_korean
+  filters:
+    - simplifier
+    - uniquifier
+
+speller:
+  alphabet: "abcdefghijklmnopqrstuvwxyz~ABCDEFGHIJKLMNOPQRSTUVWXYZ*`'"
+  initials: "abcdefghijklmnopqrstuvwxyz~"
+  delimiter: " ."
+  algebra:
+    - "xform/:::.*//"
+
+    - "xform/^~(g|gg|gs|n|nz|nh|d|dd|l|lg|lm|lb|ls|lt|lp|lh|m|b|bb|bs|s|ss|q|z|zz|c|k|t|p|h)$/$1/"
+
+translator:
+  dictionary: slg_hangugeo
+  prism: soolegi_hangugeo
+  spelling_hints: 20
+  comment_format:
+    - "xform/:::.+//"
+
+# XXX: does not work
+hanja:
+  tag: "hanja"
+  #prefix: "`"
+  prefix: ":"
+  suffix: "."
+  tips: "〔漢〕"
+  __include: "soolegi_hanja.schema:/translator"
+
+# XXX: does not work
+old_korean:
+  tag: old_korean
+  prefix: "~~"
+  suffix: ""
+  tips: "〔옛〕"
+  __include: "soolegi_yethangeul.schema:/translator"
+
+punctuator:
+  import_preset: default
+  half_shape:
+    "," : { commit: "," }
+    "." : { commit: "." }
+    "?" : { commit: "?" }
+    "!" : { commit: "!" }
+    ";" : { commit: ";" }
+    ":" : { commit: ":" }
+    "(" : "("
+    ")" : ")"
+
+key_binder:
+  import_preset: default
+  bindings:
+    # `send_sequence`: librime 3b5dbf6
+    # XXX: does not work
+    #- { when: always, accept: space, send_sequence: "{space}{space}" }
+
+recognizer:
+  import_preset: default
+  patterns:
+    #hanja: ":[a-z]*[.]?$"
+    #old_korean: "~~([a-zA-Z*`']*)[.]$"

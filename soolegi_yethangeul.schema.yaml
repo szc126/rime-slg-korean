@@ -1,0 +1,81 @@
+# Rime schema
+# encoding: utf-8
+
+schema:
+  schema_id: "soolegi_yethangeul"
+  name: "쓰레기 옛한글"
+  version: "1.0.0"
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ "가", "A" ]
+  - name: full_shape
+    reset: 0
+    states: [ "半", "全" ]
+  - name: ascii_punct
+    states: [ "。，", "．，" ]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - script_translator
+  filters:
+    - simplifier
+    - uniquifier
+
+speller:
+  alphabet: "abcdefghijklmnopqrstuvwxyz~ABCDEFGHIJKLMNOPQRSTUVWXYZ*`'"
+  delimiter: " "
+  algebra:
+    - "xform/^~~//"
+
+translator:
+  dictionary: slg_yethangeul
+  prism: soolegi_yethangeul
+  spelling_hints: 0
+  enable_user_dict: false
+  enable_completion: false
+  preedit_format:
+    # TEST:
+    #   - in  | `za~qsiqiqaQ''qeQ`~qa~qS~q`Q
+    #     out | `za ~qs i qi qaQ'' qeQ` ~q a ~q S ~q` Q
+    - "xform/(^| )([bcdfghklmnpqrstvwxz`]+) /$1$2/"
+    - "xform/(?<=[aeijouy*]) (?=[BCDFGHKLMNPQRSTVWXZ`])//"
+
+punctuator:
+  import_preset: default
+  full_shape:
+    "@" : "○"
+  half_shape:
+    "," : { commit: "," }
+    "." : { commit: "." }
+    "?" : { commit: "?" }
+    "!" : { commit: "!" }
+    ";" : { commit: ";" }
+    ":" : { commit: ":" }
+    "(" : "("
+    ")" : ")"
+
+    "@" : "○"
+
+key_binder:
+  import_preset: default
+
+recognizer:
+  import_preset: default

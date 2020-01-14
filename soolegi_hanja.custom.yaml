@@ -1,0 +1,20 @@
+patch:
+  "speller/algebra":
+    - "xform/ai/v/"
+    - "xform/ei/w/"
+    - "xform/q([a-z])/$1/"
+    - "xform/AI/V/"
+    - "xform/EI/W/"
+    - "xform/Q([A-Z])/$1/"
+
+    - "xform/:.+/:/" # remove Hangeul; preserve a colon you cannot input, so that the annotation (completion) is never removed
+    - "xform/_//" # remove spaces
+
+    - "xform/^/`/" # prefixed 訓 search
+    - "derive/^`[a-z]+//" # 音 search
+    - "xlit ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+
+  "translator/enable_user_dict": false
+  "translator/preedit_format/+":
+    - "xform/v/ai/"
+    - "xform/w/ei/"
