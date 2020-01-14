@@ -1,0 +1,40 @@
+# Rime schema
+# encoding: utf-8
+
+schema:
+  schema_id: "soolegi_hanja"
+  name: "쓰레기 한자"
+  version: "1.0.0"
+
+engine:
+  processors:
+    - speller
+    - selector
+    - express_editor
+  segmentors:
+    - abc_segmentor
+  translators:
+    - table_translator
+
+speller:
+  alphabet: "`abcdefghijklmnopqrstuvwxyz"
+  delimiter: " "
+  algebra:
+    - "xform/:.+/:/" # remove Hangeul; preserve a colon you cannot input, so that the annotation (completion) is never removed
+    - "xform/_//" # remove spaces
+
+    - "xform/^/`/" # prefixed 訓 search
+    - "derive/^`[a-z]+//" # 音 search
+    - "xlit ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+
+translator:
+  dictionary: slg_hanja
+  prism: soolegi_hanja
+  preedit_format:
+    - "xform/^(?=[^`])/【音】/"
+    - "xform/^`/【訓】/"
+  comment_format:
+    - "xform/.+:/ /" # remove romanization
+    - "xform/_/ /"
+    - "xform/[[]/【/"
+    - "xform/[]]/】/"

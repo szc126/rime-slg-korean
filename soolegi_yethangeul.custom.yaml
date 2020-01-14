@@ -1,0 +1,33 @@
+patch:
+  "speller/alphabet": "~bcdfghklmnpqrstvwxz0`aeijouy;'."
+  "speller/initials": "~bcdfghklmnpqrstvwxz0`aeijouy;'"
+  "speller/algebra":
+    - "xform/^~~//"
+
+    - "xform/[*]/;/" # arae-a
+
+    - "xform/^([BCDFGHKLMNPQRSTVWXZ]+`?)$/$1./" # full stop for jungseong
+    - "xlit BCDFGHKLMNPQRSTVWXZ bcdfghklmnpqrstvwxz"
+    - "xform/^(~.+)$/$1./" # use a full stop to end compat jamo
+    - "xform/q`/0/" # yesieung. not like we need the candidate list anyway
+
+  "translator/preedit_format":
+    - "xform/;/*/"
+
+    - "xform/0/q`/"
+
+    #- "xform/ (?=[aeijouy*])//"
+    #- "xform/ (?=[^. ~]+[.])//"
+    - "xform/(?<=[bcdfghklmnpqrstvwxz`]) (?=[aeijouy*])//"
+    - "xform/(?<=[aeijouy*]) (?=[bcdfghklmnpqrstvwxz0`]+[.])//"
+    - "xform/ (?=')//"
+
+    # TEST: `za ~qs. i qi qaq.'' qeq`. ~q. q ~q. s. ~q`. q.
+
+  "key_binder/bindings/+":
+    - { when: has_menu, accept: period, send: period }
+
+  #"menu/page_size": 1 # nvm
+
+  "style/font_face": "NanumMyeongjo YetHangul"
+  "style/font_point": 20
