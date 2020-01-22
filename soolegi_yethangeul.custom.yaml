@@ -22,9 +22,7 @@ patch:
     - "xform/(?<=[aeijouy*]) (?=[bcdfghklmnpqrstvwxz0`]+[.])//"
     - "xform/ (?=')//"
 
-    # TEST:
-    #   - in  | `za~qs.iqiqaq.''qeq`.~q.a~q.s.~q`.q.
-    #     out | `za ~qs. i qi qaq.'' qeq`. ~q. q ~q. s. ~q`. q.
+    # TEST: `za ~qs. i qi qaq.'' qeq`. ~q. q ~q. s. ~q`. q.
 
   "key_binder/bindings/+":
     - { when: has_menu, accept: period, send: period }
