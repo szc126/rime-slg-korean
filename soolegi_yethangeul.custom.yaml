@@ -27,7 +27,7 @@ patch:
   "key_binder/bindings/+":
     - { when: has_menu, accept: period, send: period }
 
-  "menu/page_size": 1
+  #"menu/page_size": 1 # nvm
 
   "style/font_face": "NanumMyeongjo YetHangul"
   "style/font_point": 20
