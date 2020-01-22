@@ -52,11 +52,10 @@ translator:
   enable_user_dict: false
   enable_completion: false
   preedit_format:
-    # TEST:
-    #   - in  | `za~qsiqiqaQ''qeQ`~qa~qS~q`Q
-    #     out | `za ~qs i qi qaQ'' qeQ` ~q a ~q S ~q` Q
     - "xform/(^| )([bcdfghklmnpqrstvwxz`]+) /$1$2/"
     - "xform/(?<=[aeijouy*]) (?=[BCDFGHKLMNPQRSTVWXZ`])//"
+
+    # TEST: `za ~qs i qi qaQ'' qeQ` ~q a ~q S ~q` Q
 
 punctuator:
   import_preset: default
