@@ -31,3 +31,28 @@ patch:
 
   "style/font_face": "NanumMyeongjo YetHangul"
   "style/font_point": 20
+
+  # Pinyin
+  "engine/segmentors":
+    - ascii_segmentor
+    - matcher
+    - affix_segmentor@pinyin
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  "engine/translators/+":
+    - script_translator@pinyin
+
+  # pinyin, even without prefix
+  # not what i want
+  #abc_segmentor:
+    #extra_tags: [ pinyin ]
+
+  pinyin:
+    tag: pinyin
+    dictionary: terra_pinyin
+    prefix: "P"
+    suffix: "."
+
+  "recognizer/patterns":
+    pinyin: "P[a-z]*[.]?$"
