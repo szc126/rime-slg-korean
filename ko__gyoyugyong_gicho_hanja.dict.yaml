@@ -2,10 +2,10 @@
 # encoding: utf-8
 #
 # 《교육용 기초 한자》
-# https://ko.wiktionary.org/?oldid=4005876
+# https://ko.wiktionary.org/?oldid=4006751
 ---
 name: "ko__gyoyugyong_gicho_hanja"
-version: "1.0.0-4005876"
+version: "1.0.0-4006751"
 sort: "original"
 columns:
   - "weight"
@@ -238,6 +238,7 @@ columns:
 2	權	guen_sei_GUEN:권세_권
 2	勸	guen_hal_GUEN:권할_권
 1	拳	zu_meg_GUEN:주먹_권
+1	券	mun_se_GUEN:문서_권
 1	厥	gy_GUEL:그_궐
 1	軌	gil_GUEI:길_궤
 2	貴	gui_hal_GUI:귀할_귀
