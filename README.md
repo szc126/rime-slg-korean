@@ -1,14 +1,14 @@
-# Soolegi (SLG) Korean / 쓰레기 한국어
+# Soolegi (SLG) Korean Input / 쓰레기 한국어 입력
 
-Soolegi (SLG) Korean (쓰레기 한국어) for [RIME](https://rime.im/).
+Soolegi (SLG) Korean Input (쓰레기 한국어 입력) for [RIME](https://rime.im/).
 
-이 프로젝트를 “쓰레기 한국어”라고 이름을 짓고, 본작에서 사용된 자작한 한국어 표기법을 “쓰레기 로마자”라고 이름을 짓습니다.
+이 프로젝트를 “쓰레기 한국어 입력”라고 이름을 짓고, 본작에서 사용된 자작한 한국어 표기법을 “쓰레기 로마자”라고 이름을 짓습니다.
 
 ……
 
-Soolegi (SLG) Korean (スレギ韓国語) for [RIME](https://rime.im/).
+Soolegi (SLG) Korean Input (スレギ韓国語入力) for [RIME](https://rime.im/).
 
-此のプロジェクトを「スレギ韓国語」と名付け、本作で使用されている自作の韓国語ローマ字表記法を「スレギローマ字」と名付けます。
+此のプロジェクトを「スレギ韓国語入力」と名付け、本作で使用されている自作の韓国語ローマ字表記法を「スレギローマ字」と名付けます。
 
 ## notes
 
