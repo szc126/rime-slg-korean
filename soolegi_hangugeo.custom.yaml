@@ -49,3 +49,6 @@ patch:
     # "bus" of the first gloss
     # should not be deleted together with
     # the Latn of the second "si nai"
+
+  "recognizer/patterns/old_korean": "J[~a-z0`;'.]*$"
+  "old_korean/suffix": Null
