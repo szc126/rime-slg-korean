@@ -29,6 +29,7 @@ patch:
     - { when: has_menu, accept: Return, send: space } # commit with space or return
 
   #"menu/page_size": 1 # nvm
+  "menu/page_size": 9 # skip over 0 (conflict between long (symbols.yaml) candidate lists and yesieung)
 
   "style/font_face": "NanumMyeongjo YetHangul"
   "style/font_point": 20
