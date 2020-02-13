@@ -26,6 +26,7 @@ patch:
 
   "key_binder/bindings/+":
     - { when: has_menu, accept: period, send: period }
+    - { when: has_menu, accept: Return, send: space } # commit with space or return
 
   #"menu/page_size": 1 # nvm
 
