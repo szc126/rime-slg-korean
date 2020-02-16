@@ -95,5 +95,7 @@ Soolegi (SLG) Korean Input (スレギ韓国語入力) for [RIME](https://rime.im
   * http://cheonhyeong.com/Simplified/download.html
 * online
   * https://akorn.bab2min.pe.kr/input
+    * https://github.com/bab2min/akorn-input
   * https://mujjingun.github.io/oko.html
   * https://ohi.pat.im/
+    * https://github.com/pat-al/Online-Hangeul-IME
