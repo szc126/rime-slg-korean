@@ -67,3 +67,8 @@ translator:
   prism: slg_dubeolsik_yethangeul
   preedit_format:
     - Null
+
+# from `soolegi_yethangeul.custom.yaml`
+key_binder:
+  bindings:
+    - { when: has_menu, accept: period, send: period }
