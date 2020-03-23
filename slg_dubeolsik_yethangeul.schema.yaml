@@ -61,6 +61,7 @@ speller:
     - "xform/[*]/kk/" # 아래아、아아
     - "xform/kkkk/KK/" # 쌍아래아、S아S아
     - "xform/lkk/KKK/" # 이아래아、S아S아S아
+    - "xform/ll/L" # 쌍이、S이
     - "xform/mm/M" # 쌍으、S으
 
 translator:
