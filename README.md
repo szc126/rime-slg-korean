@@ -65,23 +65,153 @@ RIME なんだからキーボード配列・ハングル表記法は自由に変
 
 ### `soolegi_hangugeo`
 
-<img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/hangugeo_sagwa_a.png" />
-<img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/hangugeo_sagwa_b.png" />
+<details>
+  <summary>📷</summary>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/h_hakgyo.png" />
+      <figcaption></figcaption>
+    </figure>
+  </p>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/h_Hhanja.png" />
+      <figcaption>동시에 한자를 입력</figcaption>
+    </figure>
+  </p>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/h_Jyet.png" />
+      <figcaption>동시에 옛한글을 입력</figcaption>
+    </figure>
+  </p>
+</details>
+
+#### custom
+
+<details>
+  <summary>📷</summary>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/custom-h_hakgyo1.png" />
+      <figcaption></figcaption>
+    </figure>
+  </p>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/custom-h_hakgyo2.png" />
+      <figcaption></figcaption>
+    </figure>
+  </p>
+</details>
 
 ### `soolegi_hanja`
 
-<img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/hanja_eum_a.png" />
-<img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/hanja_hun_geul.png" />
+<details>
+  <summary>📷</summary>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/hj_eum.png" />
+      <figcaption>음독으로 한자를 입력</figcaption>
+    </figure>
+  </p>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/hj_hun.png" />
+      <figcaption>훈독으로 한자를 입력</figcaption>
+    </figure>
+  </p>
+</details>
+
+#### custom
+
+<details>
+  <summary>📷</summary>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/custom-hj_eum.png" />
+      <figcaption>음독으로 한자를 입력</figcaption>
+    </figure>
+  </p>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/custom-hj_hun.png" />
+      <figcaption>훈독으로 한자를 입력</figcaption>
+    </figure>
+  </p>
+</details>
 
 ### `soolegi_yethangeul`
 
-<img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/yethangeul_ckjujelgg.png" />
-<img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/yethangeul_nogeoldae.png" />
+<details>
+  <summary>📷</summary>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/y_asdf.png" />
+      <figcaption></figcaption>
+    </figure>
+  </p>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/y_hunmin.png" />
+      <figcaption></figcaption>
+    </figure>
+  </p>
+</details>
+
+#### custom
+
+<details>
+  <summary>📷</summary>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/custom-y_asdf.png" />
+      <figcaption></figcaption>
+    </figure>
+  </p>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/custom-y_hunmin.png" />
+      <figcaption></figcaption>
+    </figure>
+  </p>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/custom-y_nogeoldae.png" />
+      <figcaption></figcaption>
+    </figure>
+  </p>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/custom-y_Ppinyin.png" />
+     <figcaption>동시에 <a href="https://github.com/rime/rime-terra-pinyin">地球拼音</a>으로 입력</figcaption>
+    </figure>
+  </p>
+</details>
 
 ### `slg_dubeolsik_yethangeul`
 
-<img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/yethangeul_ckjujelgg_dubeolsik.png" />
-<img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/yethangeul_nalasmal_dubeolsik.png" />
+<details>
+  <summary>📷</summary>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/y-du_asdf.png" />
+      <figcaption></figcaption>
+    </figure>
+  </p>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/y-du_hunmin.png" />
+      <figcaption></figcaption>
+    </figure>
+  </p>
+  <p>
+    <figure>
+      <img src="https://gist.githubusercontent.com/szc126/b50caf5ceb06b50f72ea08ed95eb0051/raw/y-du_nogeoldae.png" />
+      <figcaption></figcaption>
+    </figure>
+  </p>
+</details>
 
 ## 사용예
 
