@@ -37,17 +37,17 @@ speller:
     - "xform/dd/D/" # 쌍ㅇ、Sㅇ
     - "xform/ff/F/" # 쌍ㄹ、Sㄹ
 
-    - "xform/33/fdd/" # 가벼운ㄹ、ㄹㅇㅇ
-    - "xform/44/Qdd/" # 가벼운ㅃ、Sㅂㅇㅇ、ㅃㅇㅇ
+    - "xform/33/ff/" # 가벼운ㄹ、ㄹㄹ
+    - "xform/44/QQ/" # 가벼운ㅃ、SㅂSㅂ、ㅃㅃ
     #- "xform/55//" # choseong filler # XXX
     #- "xform/!!//" # jungseong filler # XXX
 
     - "xform/d`/dd/" # 옛ㅇ、ㅇㅇ
     - "xform/2/gg/" # 여린ㅎ、ㅎㅎ
     - "xform/3/tt/" # 반ㅅ、ㅅㅅ
-    - "xform/4/qdd/" # 가벼운ㅂ、ㅂㅇㅇ
-    - "xform/5/vdd/" # 가벼운ㅍ、ㅍㅇㅇ
-    - "xform/6/add/" # 가벼운ㅁ、ㅁㅇㅇ
+    - "xform/4/qq/" # 가벼운ㅂ、ㅂㅂ
+    - "xform/5/vv/" # 가벼운ㅍ、ㅍㅍ
+    - "xform/6/aa/" # 가벼운ㅁ、ㅁㅁ
 
     - "xform/!h/y/" # ㅛ
     - "xform/!j/u/" # ㅠ
