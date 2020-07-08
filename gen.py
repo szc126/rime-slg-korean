@@ -104,108 +104,97 @@ ucn_word_to_rom = {
 
 jamo_to_rom = None
 
-def collect_ucn_words():
-	ucn_words_collection = {
-		"c": set([]),
-		"v": set([]),
-	}
-
-	for u_block in u_blocks:
-		for dec in range(u_block['range'][0], u_block['range'][1] + 1):
-			ucn = unicodedata.name(chr(dec), "null").lower()
-			print(hex(dec) + "\t" + chr(dec) + "\t" + ucn)
-
-			ucn_words = re.findall(r'[a-z]+', ucn)
-			ucn_words_collection["v" if 'jungseong' in ucn else "c"].update(ucn_words)
-
-	print()
-	print(" ".join(ucn_words_collection["c"]).lower())
-	print()
-	print(" ".join(ucn_words_collection["v"]).lower())
-
 def convert_ucn_to_rom(ucn_words):
 	rom = []
 	for word in ucn_words:
 		rom.append(ucn_word_to_rom[word])
-	return "".join(rom)
+	return ''.join(rom)
 
 def romanize_syllable(syllable):
-	rom = ""
+	# i could do smart people math
+	# using the something whatever algorithm
+	# or i could do this
+	rom = ''
 	syllable_nfd = unicodedata.normalize('NFD', syllable)
 	for jamo in syllable_nfd:
 		rom += jamo_to_rom[jamo]
 	return rom
 
-def generate_dict_jamo():
-	dict_lines = {}
+def collect_ucn_words():
+	ucn_words_collection = {
+		'c': set([]),
+		'v': set([]),
+	}
 
 	for u_block in u_blocks:
 		for dec in range(u_block['range'][0], u_block['range'][1] + 1):
-			ucn = unicodedata.name(chr(dec), "null").lower()
+			ucn = unicodedata.name(chr(dec), 'null').lower()
+			print(hex(dec) + '\t' + chr(dec) + '\t' + ucn)
 
-			if ucn != "null":
-				ucn_words = re.findall(r'[a-z]+', ucn)
+			ucn_words = re.findall(r'[a-z]+', ucn)
+			ucn_words_collection['v' if 'jungseong' in ucn else 'c'].update(ucn_words)
 
-				rom = convert_ucn_to_rom(ucn_words)
+	print()
+	print(' '.join(ucn_words_collection['c']).lower())
+	print()
+	print(' '.join(ucn_words_collection['v']).lower())
 
-				#print(hex(dec) + "\t" + chr(dec) + "\t" + rom + "\t" + ucn)
-
-				classification = u_block['name'] + " : " + ucn_words[1]
-				if ucn_words[1] == 'choseong':
-					rom = rom.upper()
-				dict_line = chr(dec) + "\t" + "~~" + rom
-				if not classification in dict_lines:
-					dict_lines[classification] = []
-				dict_lines[classification].append(dict_line)
-
-	for classification in dict_lines:
-		print("# " + classification)
-		for dict_line in dict_lines[classification]:
-			print(dict_line)
-
-def generate_jamo_to_rom_mapping():
+def generate_map_jamo_to_rom():
 	jamo_to_rom = {}
 
 	for u_block in u_blocks:
 		for dec in range(u_block['range'][0], u_block['range'][1] + 1):
-			ucn = unicodedata.name(chr(dec), "null").lower()
+			ucn = unicodedata.name(chr(dec), 'null').lower()
 
-			if ucn != "null":
+			if ucn != 'null':
 				ucn_words = re.findall(r'[a-z]+', ucn)
 				rom = convert_ucn_to_rom(ucn_words)
 				jamo_to_rom[chr(dec)] = rom
 
 	return jamo_to_rom
 
+def generate_dict_jamo():
+	dict_lines = {}
+
+	for u_block in u_blocks:
+		for dec in range(u_block['range'][0], u_block['range'][1] + 1):
+			ucn = unicodedata.name(chr(dec), 'null').lower()
+
+			if ucn != 'null':
+				ucn_words = re.findall(r'[a-z]+', ucn)
+				rom = convert_ucn_to_rom(ucn_words)
+				#print(hex(dec) + '\t' + chr(dec) + '\t' + rom + '\t' + ucn)
+				classification = u_block['name'] + ' : ' + ucn_words[1]
+
+				if ucn_words[1] == 'jongseong':
+					rom = rom.upper()
+
+				if not classification in dict_lines:
+					dict_lines[classification] = []
+				dict_lines[classification].append(chr(dec) + '\t' + '~~' + rom)
+
+	for classification in dict_lines:
+		#print('# ' + classification)
+		for dict_line in dict_lines[classification]:
+			print(dict_line)
+
 def generate_dict_compat_jamo():
 	dict_lines = []
 
 	for dec in range(0x3130, 0x318f + 1):
-		ucn = unicodedata.name(chr(dec), "NULL").lower()
+		ucn = unicodedata.name(chr(dec), 'null').lower()
 
-		if ucn != "null":
+		if ucn != 'null':
 			ucn_words = re.findall(r'[a-z]+', ucn)
-
 			rom = convert_ucn_to_rom(ucn_words)
 
-			if dec >= 0x314f:
-				rom = "~" + rom # append "~" to vowels and exotic consonants
+			dict_lines.append(chr(dec) + '\t' + '~' + rom)
 
-			dict_lines.append(chr(dec) + "\t" + rom)
-
-	print("\n".join(dict_lines))
+	print('\n'.join(dict_lines))
 
 def generate_dict_syllable():
 	for dec in range(0xac00, 0xd7a3 + 1):
-		# i could do smart people math
-		# using the something whatever algorithm
-		# or i could do this
-		syllable_nfd = unicodedata.normalize('NFD', chr(dec))
-		rom = ""
-		for jamo in syllable_nfd:
-			rom += jamo_to_rom[jamo]
-
-		print(chr(dec) + "\t" + rom)
+		print(chr(dec) + '\t' + romanize_syllable(chr(dec)))
 
 def generate_hakseubyong_dict():
 	jamo_to_latn = generate_jamo_to_latn_mapping()
@@ -413,4 +402,4 @@ def generate_bindo_dict():
 
 			print(create_header(filename, names[filename][0], names[filename][1]))
 
-jamo_to_rom = generate_jamo_to_rom_mapping()
+jamo_to_rom = generate_map_jamo_to_rom()
