@@ -316,10 +316,8 @@ def generate_dict_hakseubyong():
 		print(str('' if freq == -1 else freq) + '\t' + word + '\t' + rom + explanation)
 
 		for hanja in hanjas:
-			if freq != -1:
-				freq -= 1
 			explanation = '::' + '[' + word + ']' + '=='
-			print(str('' if freq == -1 else freq) + '\t' + hanja + '\t' + rom + explanation)
+			print(str('' if freq == -1 else freq - 1) + '\t' + hanja + '\t' + rom + explanation)
 
 
 def generate_gyoyugyong_gicho_hanja_dict():
