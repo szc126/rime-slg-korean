@@ -120,6 +120,12 @@ def romanize_syllable(syllable):
 		rom += jamo_to_rom[jamo]
 	return rom
 
+def romanize_syllables(syllables):
+	roms = []
+	for syllable in syllables:
+		roms.append(romanize_syllable(syllable))
+	return roms
+
 def collect_ucn_words():
 	ucn_words_collection = {
 		'c': set([]),
@@ -196,8 +202,7 @@ def generate_dict_syllable():
 	for dec in range(0xac00, 0xd7a3 + 1):
 		print(chr(dec) + '\t' + romanize_syllable(chr(dec)))
 
-def generate_hakseubyong_dict():
-	jamo_to_latn = generate_jamo_to_latn_mapping()
+def generate_dict_hakseubyong():
 	collection = {}
 
 	# TODO: verb/adj conjugation
@@ -205,142 +210,114 @@ def generate_hakseubyong_dict():
 	# 춥다 추워-
 	# 등
 
-	with open('hakseubyong.tsv', mode='r', encoding='utf-8') as f_in:
-		f_in = csv.reader(f_in, delimiter='\t')
+	with open('hakseubyong.tsv', mode='r', encoding='utf-8') as file:
+		file = csv.reader(file, delimiter='\t')
+		next(file) # skip header
 
-		next(f_in) # skip header
+		# sort -V hakseubyong.tsv
+		# <하얀색>
+		max_freq = 57151
 
-		#max_freq = 0
-		#for row in f_in:
-			#freq = (int(row[0]) if row[0] != '' else 0)
-			#max_freq = (freq if freq > max_freq else max_freq)
-		max_freq = 57151 # <하얀색>
-
-		for row in f_in:
-			#print("\t" + str(row))
-
-			freq = row[0]
-			word = row[1]
-			pos = row[2]
-			explanation = row[3]
+		for row in file:
+			freq, word, pos, explanation = row[0], row[1], row[2], row[3]
 
 			if freq == '':
-				freq = None # place names do not have a frequency
+				freq = False # place names do not have a frequency
 			else:
 				# high number = low frequency
 				# (i.e. ranking)
 				# reverse this for RIME
 				freq = (max_freq + 2) - int(freq)
 
-			#if re.search(r'[^가-힣\d]', word):
-				#print(word)
-			# only 2 entries:
-			# <도쿄(동경)>
-			# <베이징(북경)>
-
-			words = re.findall(r'[가-힣]+', word)
-			roms = []
-			hanja = None
-
-			for i, word in enumerate(words):
-				roms.append([])
-				for geul in word:
-					roms[i].append(romanize_syllable(geul, jamo_to_latn))
-				roms[i] = " ".join(roms[i])
-
-			#print(str(words) + "\t" + str(roms))
-			# grep "베이징"
-
+			hanja = False
 			explanation = unicodedata.normalize('NFC', explanation) # un-compat CJK compat chars
 
-			if re.search(r'[㐀-鿕]', explanation):
-				exp_2 = explanation
+			# cut hakseubyong.tsv -f2 | LANG=C grep '[^가-힣0-9]'
+			# <도쿄(동경)> <베이징(북경)>
+			for word in re.findall(r'[가-힣\d]+', word):
+				_ = re.search('^([가-힣]+)([\d]*)$', word)
+				word, disambig_id = _.group(1), _.group(2)
+				rom = ' '.join(romanize_syllables(word))
 
-				if "." in exp_2:
-					# "數. ~를 세다"
-					exp_2 = re.sub(r'\..+', '', exp_2)
+				if re.search(r'[㐀-鿕]', explanation):
+					exp_2 = explanation
 
-				if re.search(r'^[㐀-鿕]+$', exp_2):
-					hanja = exp_2
-				elif exp_2.startswith("-") and exp_2.endswith("-"):
-					# "-傷-"
-					pass
-				elif exp_2.startswith("-"):
-					word_head = word[:-len(exp_2[1:])]
-					word_tail = exp_2[1:]
-					hanja = word_head + word_tail
-				elif exp_2.endswith("-"):
-					word_head = exp_2[:-1]
-					word_tail = word[len(exp_2[:-1]):]
-					hanja = word_head + word_tail
-				else:
-					# "市內bus"
-					pass
+					if '.' in exp_2:
+						# "數. ~를 세다"
+						exp_2 = re.sub(r'\..+', '', exp_2)
 
-			#for i, word in enumerate(words):
-				#exp_3 = ""
+					if re.search(r'^[㐀-鿕]+$', exp_2):
+						hanja = exp_2
+					elif exp_2.startswith('-') and exp_2.endswith('-'):
+						# "-傷-"
+						pass
+					elif exp_2.startswith('-'):
+						hanja = word[:-len(exp_2[1:])] + exp_2[1:]
+					elif exp_2.endswith('-'):
+						hanja = exp_2[:-1] + word[len(exp_2[:-1]):]
+					else:
+						# "市內bus"
+						pass
+
+				#exp_3 = ''
 				#if explanation:
-					#exp_3 = ":::" + re.sub(r' ', '___', explanation)
+					#exp_3 = ':::' + re.sub(r' ', '___', explanation)
 
-				#print(freq + "\t" + words[i] + "\t" + roms[i] + exp_3)
+				#print(freq + '\t' + words[i] + '\t' + roms[i] + exp_3)
 				#if hanja:
-					#print(freq + "\t" + hanja + "\t" + roms[i] + exp_3)
+					#print(freq + '\t' + hanja + '\t' + roms[i] + exp_3)
 
-			for word in words:
 				if not word in collection:
 					collection[word] = {}
-					collection[word]["freq"] = []
-					#collection[word]["word"] = []
-					collection[word]["rom"] = ""
-					#collection[word]["pos"] = []
-					collection[word]["explanation"] = []
-					collection[word]["hanja"] = {}
-					#collection[word]["hanja"]["hanja"] = ""
-					#collection[word]["hanja"]["explanation"] = ""
-				if freq:
-					collection[word]["freq"].append(freq)
-				#collection[word]["word"].append(word)
-				collection[word]["rom"] = roms[i]
-				#collection[word]["pos"].append(pos)
-				collection[word]["explanation"].append(explanation)
+					collection[word]['freq'] = []
+					collection[word]['word'] = []
+					collection[word]['rom'] = ''
+					collection[word]['pos'] = []
+					collection[word]['explanation'] = []
+					collection[word]['hanja'] = {}
+				collection[word]['freq'].append(freq)
+				collection[word]['word'].append(word)
+				collection[word]['rom'] = rom
+				collection[word]['pos'].append(pos)
+				collection[word]['explanation'].append(explanation)
 				if hanja:
 					# <가구>
-					collection[word]["hanja"][hanja] = explanation
+					collection[word]['hanja'][hanja] = explanation
 
 		for word in collection:
-			freq = collection[word]["freq"]
+			freq = collection[word]['freq']
 			if freq:
 				freq = max(freq)
-			rom = collection[word]["rom"]
-			explanation = collection[word]["explanation"]
+			rom = collection[word]['rom']
+			explanation = collection[word]['explanation']
 
 			# remove duplicate explanations, as with <수> and <현재>
 			# https://stackoverflow.com/questions/7961363/removing-duplicates-in-lists
 			explanation = list(dict.fromkeys(explanation))
 			# XXX: sort explanation by frequency?
-			explanation = ";;".join(explanation)
-			#if explanation != "":
-				#explanation = "::" + re.sub(r" ", "__", explanation)
-			explanation = "::" + "[" + word + "]" + re.sub(r" ", "__", explanation) + "=="
+			explanation = ';;'.join(explanation)
+			#if explanation != '':
+				#explanation = '::' + re.sub(r' ', '__', explanation)
+			explanation = '::' + '[' + word + ']' + re.sub(r' ', '__', explanation) + '=='
 			# →"yes, this word is in the dictionary"
 
-			print((str(freq) if freq else "") + "\t" + word + "\t" + rom + explanation)
+			print((str(freq) if freq else '') + '\t' + word + '\t' + rom + explanation)
 
-			if collection[word]["hanja"]:
-				for hanja in collection[word]["hanja"]:
+			if collection[word]['hanja']:
+				for hanja in collection[word]['hanja']:
 					if freq:
 						freq -= 1
-					explanation = "::" + "[" + word + "]" + "=="
-					print((str(freq) if freq else "") + "\t" + hanja + "\t" + rom + explanation)
+					explanation = '::' + '[' + word + ']' + '=='
+					print((str(freq) if freq else '') + '\t' + hanja + '\t' + rom + explanation)
 
 
 def generate_gyoyugyong_gicho_hanja_dict():
 	jamo_to_latn = generate_jamo_to_latn_mapping()
 	collection = {}
 
-	with open('gyoyugyong gicho hanja.json', mode='r', encoding='utf-8') as f_in:
-		f_in = json.load(f_in)
-		for syllChars in f_in:
+	with open('gyoyugyong gicho hanja.json', mode='r', encoding='utf-8') as file:
+		file = json.load(file)
+		for syllChars in file:
 			for grade in syllChars:
 				if syllChars[grade]:
 					syllChars[grade] = re.sub(r'\s*•\s*', ',', syllChars[grade])
@@ -395,10 +372,10 @@ def generate_bindo_dict():
 		])
 
 	for filename in names:
-		with open('bindo_new/utf8/' + filename + '.txt', mode='r', encoding='utf8') as f_in:
-			f_in = csv.reader(f_in, delimiter='\t')
+		with open('bindo_new/utf8/' + filename + '.txt', mode='r', encoding='utf8') as file:
+			file = csv.reader(file, delimiter='\t')
 
-			next(f_in) # skip header
+			next(file) # skip header
 
 			print(create_header(filename, names[filename][0], names[filename][1]))
 
