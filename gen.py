@@ -117,13 +117,16 @@ def romanize_syllable(syllable):
 	rom = ''
 	syllable_nfd = unicodedata.normalize('NFD', syllable)
 	for jamo in syllable_nfd:
+		if not jamo in jamo_to_rom:
+			return syllable
 		rom += jamo_to_rom[jamo]
 	return rom
 
 def romanize_syllables(syllables):
 	roms = []
 	for syllable in syllables:
-		roms.append(romanize_syllable(syllable))
+		rom = romanize_syllable(syllable)
+		roms.append(rom)
 	return roms
 
 def collect_ucn_words():
@@ -301,8 +304,7 @@ def generate_dict_hakseubyong():
 			explanation = '::' + '[' + word + ']' + '=='
 			print(str('' if freq == -1 else freq - 1) + '\t' + hanja + '\t' + rom + explanation)
 
-def generate_gyoyugyong_gicho_hanja_dict():
-	jamo_to_latn = generate_jamo_to_latn_mapping()
+def generate_dict_gyoyugyong_gicho_hanja():
 	collection = {}
 
 	with open('gyoyugyong gicho hanja.json', mode='r', encoding='utf-8') as file:
@@ -315,22 +317,17 @@ def generate_gyoyugyong_gicho_hanja_dict():
 					syllChars[grade] = re.sub(r'\s*[()]\s*', '', syllChars[grade])
 					syllChars[grade] = re.sub(r'\[\d+\]', '', syllChars[grade])
 					syllChars[grade] = syllChars[grade].split(',')
-					for temp in syllChars[grade]:
-						temp = temp.split(':')
-						chars = re.split(r'\s*/\s*', temp[0])
-						eumhun = temp[1]
-						eumhun_rom = []
-						eumhun_rom_caps = False
-						for char in eumhun:
-							if char != " ":
-								syllable_rom = romanize_syllable(char, jamo_to_latn)
-								eumhun_rom.append(syllable_rom)
-						eumhun_rom = "_".join(eumhun_rom)
+					for _ in syllChars[grade]:
+						_ = _.split(':')
+						hanjas, eumhun = re.split(r'\s*/\s*', _[0]), _[1]
+						eumhun = eumhun.replace(' ', '_')
+						eumhun_rom = romanize_syllables(eumhun)
+						eumhun_rom = [rom for rom in eumhun_rom if rom != '_']
+						eumhun_rom = '_'.join(eumhun_rom)
 						eumhun_rom = re.sub(r'([a-z]+)$', lambda z: str(z[1]).upper(), eumhun_rom) # <象> "코 끼리 상"
-						eumhun = eumhun.replace(" ", "_")
-						reading = eumhun_rom + ":" + eumhun + ("[" + "·".join(chars) + "]" if len(chars) > 1 else "")
-						for char in chars:
-							print(('2' if grade == 'mid' else '1') + '\t' + char + '\t' + reading)
+						reading = eumhun_rom + ':' + eumhun + ('[' + '·'.join(hanjas) + ']' if len(hanjas) > 1 else '')
+						for hanja in hanjas:
+							print(('2' if grade == 'mid' else '1') + '\t' + hanja + '\t' + reading)
 
 def generate_bindo_dict():
 	jamo_to_latn = generate_jamo_to_latn_mapping()
