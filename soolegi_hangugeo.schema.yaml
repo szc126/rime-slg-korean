@@ -4,7 +4,7 @@
 schema:
   schema_id: "soolegi_hangugeo"
   name: "쓰레기 한국어"
-  version: "1.0.0"
+  version: "alpha"
 
 switches:
   - name: ascii_mode

@@ -6,7 +6,7 @@
 # - "ff": Hangul filler
 ---
 name: "ko__unicode_hangul_compatibility_jamo"
-version: "1.0.0-1.0.0"
+version: "alpha-1.0.0"
 sort: "original"
 ...
 ㄱ	~g

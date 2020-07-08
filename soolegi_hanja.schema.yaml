@@ -4,7 +4,7 @@
 schema:
   schema_id: "soolegi_hanja"
   name: "쓰레기 한자"
-  version: "1.0.0"
+  version: "alpha"
 
 engine:
   processors:

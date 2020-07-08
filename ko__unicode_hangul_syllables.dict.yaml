@@ -4,7 +4,7 @@
 # Unicode: Hangul Syllables
 ---
 name: "ko__unicode_hangul_syllables"
-version: "1.0.0-2.0"
+version: "alpha-2.0"
 sort: "original"
 ...
 가	ga

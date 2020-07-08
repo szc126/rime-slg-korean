@@ -2,7 +2,7 @@
 # encoding: utf-8
 ---
 name: "slg_yethangeul"
-version: "1.0.0"
+version: "alpha"
 sort: "by_weight"
 import_tables:
   - ko__unicode_hangul_compatibility_jamo

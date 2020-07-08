@@ -6,7 +6,7 @@
 # 공공누리 제1 유형
 ---
 name: "ko__hangugeo_hakseubyong_eohwi"
-version: "1.0.0-2015.3.2"
+version: "alpha-2015.3.2"
 sort: "by_weight"
 columns:
   - "weight"

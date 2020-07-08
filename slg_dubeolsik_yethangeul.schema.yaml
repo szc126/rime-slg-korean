@@ -6,7 +6,7 @@ __include: "soolegi_yethangeul.schema:/"
 schema:
   schema_id: "slg_dubeolsik_yethangeul"
   name: "SLG 두벌식 옛한글"
-  version: "1.0.0"
+  version: "alpha"
 
 speller:
   alphabet: "~qwertyuiopasdfghjklzxcvbnm`'QWERTYUIOPASDFGHJKLZXCVBNM."

@@ -5,7 +5,7 @@
 # https://ko.wiktionary.org/?oldid=4006751
 ---
 name: "ko__gyoyugyong_gicho_hanja"
-version: "1.0.0-4006751"
+version: "alpha-4006751"
 sort: "original"
 columns:
   - "weight"
