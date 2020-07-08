@@ -385,7 +385,7 @@ def generate_bindo_dict():
 			'# https://www.korean.go.kr/front/reportData/reportDataView.do?mn_id=45&report_seq=1',
 			'---',
 			'name: "ko__hyeondae_gugeo_sayong_bindo_josa_2__' + name_lat + '"',
-			'version: "1.0.0-2005-12"',
+			'version: "alpha-2005-12"',
 			'sort: "by_weight"',
 			'columns:',
 			'  - "weight"',
