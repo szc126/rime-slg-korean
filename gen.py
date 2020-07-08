@@ -7,7 +7,14 @@ import json
 
 # it just Werks™
 
-unicode_word_to_rom = {
+u_blocks = [
+	{'name': 'hangul jamo', 'range': (0x1100, 0x11ff)},
+	{'name': 'hangul jamo extended-a', 'range': (0xa960, 0xa97f)},
+	{'name': 'hangul jamo extended-b', 'range': (0xd7b0, 0xd7ff)},
+]
+
+# ucn - unicode character name
+ucn_word_to_rom = {
 	'kiyeok': 'g',
 	'khieukh': 'k',
 	'yesieung': '0', #
@@ -95,126 +102,108 @@ unicode_word_to_rom = {
 	'letter': '',
 }
 
-unicode_ranges = [
-	[0x1100, 0x11ff],
-	[0xa960, 0xa97f],
-	[0xd7b0, 0xd7ff],
-]
+jamo_to_rom = None
 
-unicode_ranges_names = [
-	"hangul jamo",
-	"hangul jamo extended-a",
-	"hangul jamo extended-b",
-]
-
-j_forms = {
-	"choseong": "xform/(^| ){}/{}/",
-	"jungseong": "xform/{}/{}/",
-	"jongseong": "xform/{}( |$)/{}/",
-}
-
-def collect_unicode_name_words():
-	unicode_name_words_collection = {
+def collect_ucn_words():
+	ucn_words_collection = {
 		"c": set([]),
 		"v": set([]),
 	}
 
-	for block in range(0, len(unicode_ranges)):
-		for dec in range(unicode_ranges[block][0], unicode_ranges[block][1] + 1):
-			name = unicodedata.name(chr(dec), "NULL").lower()
-			print(hex(dec) + "\t" + chr(dec) + "\t" + name)
+	for u_block in u_blocks:
+		for dec in range(u_block['range'][0], u_block['range'][1] + 1):
+			ucn = unicodedata.name(chr(dec), "null").lower()
+			print(hex(dec) + "\t" + chr(dec) + "\t" + ucn)
 
-			name_words = re.findall(r'[a-z]+', name)
-			unicode_name_words_collection["v" if "jung" in name else "c"].update(name_words)
-		#input()
+			ucn_words = re.findall(r'[a-z]+', ucn)
+			ucn_words_collection["v" if 'jungseong' in ucn else "c"].update(ucn_words)
 
-	print(" ".join(unicode_name_words_collection["c"]))
-	print(" ".join(unicode_name_words_collection["v"]))
+	print()
+	print(" ".join(ucn_words_collection["c"]).lower())
+	print()
+	print(" ".join(ucn_words_collection["v"]).lower())
 
-def romanize_jamo_from_unicode_name(name_words):
+def convert_ucn_to_rom(ucn_words):
 	rom = []
-	for i, word in enumerate(name_words):
-		rom.append(unicode_word_to_rom[word])
+	for word in ucn_words:
+		rom.append(ucn_word_to_rom[word])
 	return "".join(rom)
 
-def romanize_syllable(syllable, jamo_to_latn):
-	ret = ""
+def romanize_syllable(syllable):
+	rom = ""
 	syllable_nfd = unicodedata.normalize('NFD', syllable)
-	for z in syllable_nfd:
-		ret += jamo_to_latn[z]
-	return str(ret)
+	for jamo in syllable_nfd:
+		rom += jamo_to_rom[jamo]
+	return rom
 
-def generate_jamo_dict():
-	pflines = {}
+def generate_dict_jamo():
+	dict_lines = {}
 
-	for block in range(0, len(unicode_ranges)):
-		for dec in range(unicode_ranges[block][0], unicode_ranges[block][1] + 1):
-			name = unicodedata.name(chr(dec), "NULL").lower()
+	for u_block in u_blocks:
+		for dec in range(u_block['range'][0], u_block['range'][1] + 1):
+			ucn = unicodedata.name(chr(dec), "null").lower()
 
-			if name != "null":
-				name_words = re.findall(r'[a-z]+', name)
+			if ucn != "null":
+				ucn_words = re.findall(r'[a-z]+', ucn)
 
-				rom = romanize_jamo_from_unicode_name(name_words)
+				rom = convert_ucn_to_rom(ucn_words)
 
-				#print(hex(dec) + "\t" + chr(dec) + "\t" + rom + "\t" + name)
+				#print(hex(dec) + "\t" + chr(dec) + "\t" + rom + "\t" + ucn)
 
-				classification = unicode_ranges_names[block] + " : " + name_words[1]
-				if name_words[1] == 'choseong':
+				classification = u_block['name'] + " : " + ucn_words[1]
+				if ucn_words[1] == 'choseong':
 					rom = rom.upper()
-				pfline = chr(dec) + "\t" + "~~" + rom
-				if not classification in pflines:
-					pflines[classification] = []
-				pflines[classification].append(pfline)
+				dict_line = chr(dec) + "\t" + "~~" + rom
+				if not classification in dict_lines:
+					dict_lines[classification] = []
+				dict_lines[classification].append(dict_line)
 
-	for classification in pflines:
+	for classification in dict_lines:
 		print("# " + classification)
-		for pfline in pflines[classification]:
-			print(pfline)
+		for dict_line in dict_lines[classification]:
+			print(dict_line)
 
-def generate_jamo_to_latn_mapping():
-	jamo_to_latn = {}
+def generate_jamo_to_rom_mapping():
+	jamo_to_rom = {}
 
-	for dec in range(unicode_ranges[0][0], unicode_ranges[0][1] + 1):
-		name = unicodedata.name(chr(dec), "NULL").lower()
+	for u_block in u_blocks:
+		for dec in range(u_block['range'][0], u_block['range'][1] + 1):
+			ucn = unicodedata.name(chr(dec), "null").lower()
 
-		if name != "null":
-			name_words = re.findall(r'[a-z]+', name)
+			if ucn != "null":
+				ucn_words = re.findall(r'[a-z]+', ucn)
+				rom = convert_ucn_to_rom(ucn_words)
+				jamo_to_rom[chr(dec)] = rom
 
-			rom = romanize_jamo_from_unicode_name(name_words)
+	return jamo_to_rom
 
-			jamo_to_latn[chr(dec)] = rom
-
-	return jamo_to_latn
-
-def generate_compat_jamo_dict():
-	dictlines = []
+def generate_dict_compat_jamo():
+	dict_lines = []
 
 	for dec in range(0x3130, 0x318f + 1):
-		name = unicodedata.name(chr(dec), "NULL").lower()
+		ucn = unicodedata.name(chr(dec), "NULL").lower()
 
-		if name != "null":
-			name_words = re.findall(r'[a-z]+', name)
+		if ucn != "null":
+			ucn_words = re.findall(r'[a-z]+', ucn)
 
-			rom = romanize_jamo_from_unicode_name(name_words)
+			rom = convert_ucn_to_rom(ucn_words)
 
 			if dec >= 0x314f:
 				rom = "~" + rom # append "~" to vowels and exotic consonants
 
-			dictlines.append(chr(dec) + "\t" + rom)
+			dict_lines.append(chr(dec) + "\t" + rom)
 
-	print("\n".join(dictlines))
+	print("\n".join(dict_lines))
 
-def generate_syllable_dict():
-	jamo_to_latn = generate_jamo_to_latn_mapping()
-
+def generate_dict_syllable():
 	for dec in range(0xac00, 0xd7a3 + 1):
 		# i could do smart people math
 		# using the something whatever algorithm
 		# or i could do this
-		f = unicodedata.normalize('NFD', chr(dec))
+		syllable_nfd = unicodedata.normalize('NFD', chr(dec))
 		rom = ""
-		for z in f:
-			rom += jamo_to_latn[z]
+		for jamo in syllable_nfd:
+			rom += jamo_to_rom[jamo]
 
 		print(chr(dec) + "\t" + rom)
 
@@ -424,6 +413,4 @@ def generate_bindo_dict():
 
 			print(create_header(filename, names[filename][0], names[filename][1]))
 
-#generate_hakseubyong_dict()
-generate_gyoyugyong_gicho_hanja_dict()
-#generate_bindo_dict()
+jamo_to_rom = generate_jamo_to_rom_mapping()
