@@ -211,22 +211,20 @@ def generate_dict_hakseubyong():
 	# 등
 
 	with open('hakseubyong.tsv', mode='r', encoding='utf-8') as file:
-		file = csv.reader(file, delimiter='\t')
-		next(file) # skip header
+		reader = csv.reader(file, delimiter='\t')
+		next(reader) # skip header
 
 		# sort -V hakseubyong.tsv
 		# <하얀색>
 		max_freq = 57151
 
-		for row in file:
+		for row in reader:
 			freq, word, pos, explanation = row[0], row[1], row[2], row[3]
 
 			if freq == '':
-				freq = False # place names do not have a frequency
+				freq = -1 # place names do not have a frequency
 			else:
-				# high number = low frequency
-				# (i.e. ranking)
-				# reverse this for RIME
+				# convert ranking to frequency
 				freq = (max_freq + 2) - int(freq)
 
 			hanja = False
@@ -267,48 +265,61 @@ def generate_dict_hakseubyong():
 				#if hanja:
 					#print(freq + '\t' + hanja + '\t' + roms[i] + exp_3)
 
+				# <가구03>(명) <가구04>(명)
+				# <가까이>(부) <가까이>(명)
 				if not word in collection:
 					collection[word] = {}
-					collection[word]['freq'] = []
-					collection[word]['word'] = []
-					collection[word]['rom'] = ''
-					collection[word]['pos'] = []
-					collection[word]['explanation'] = []
-					collection[word]['hanja'] = {}
-				collection[word]['freq'].append(freq)
-				collection[word]['word'].append(word)
-				collection[word]['rom'] = rom
-				collection[word]['pos'].append(pos)
-				collection[word]['explanation'].append(explanation)
-				if hanja:
-					# <가구>
-					collection[word]['hanja'][hanja] = explanation
+				if not pos in collection[word]:
+					collection[word][pos] = {}
+				if not disambig_id in collection[word][pos]:
+					collection[word][pos][disambig_id] = {}
 
-		for word in collection:
-			freq = collection[word]['freq']
-			if freq:
-				freq = max(freq)
-			rom = collection[word]['rom']
-			explanation = collection[word]['explanation']
+				collection[word][pos][disambig_id]['freq'] = freq
+				collection[word][pos][disambig_id]['explanation'] = explanation
+				collection[word][pos][disambig_id]['rom'] = rom
+				collection[word][pos][disambig_id]['hanja'] = hanja
 
-			# remove duplicate explanations, as with <수> and <현재>
-			# https://stackoverflow.com/questions/7961363/removing-duplicates-in-lists
-			explanation = list(dict.fromkeys(explanation))
-			# XXX: sort explanation by frequency?
-			explanation = ';;'.join(explanation)
-			#if explanation != '':
-				#explanation = '::' + re.sub(r' ', '__', explanation)
-			explanation = '::' + '[' + word + ']' + re.sub(r' ', '__', explanation) + '=='
-			# →"yes, this word is in the dictionary"
+	for word in collection:
+		freq = ''
+		explanation = ''
+		rom = ''
+		hanja = ''
 
-			print((str(freq) if freq else '') + '\t' + word + '\t' + rom + explanation)
+		freqs = []
+		explanations = []
+		hanjas = []
 
-			if collection[word]['hanja']:
-				for hanja in collection[word]['hanja']:
-					if freq:
-						freq -= 1
-					explanation = '::' + '[' + word + ']' + '=='
-					print((str(freq) if freq else '') + '\t' + hanja + '\t' + rom + explanation)
+		for pos in collection[word]:
+			for disambig_id in collection[word][pos]:
+				freqs.append(collection[word][pos][disambig_id]['freq'])
+				explanations.append(collection[word][pos][disambig_id]['explanation'])
+				if not rom:
+					rom = collection[word][pos][disambig_id]['rom']
+				if collection[word][pos][disambig_id]['hanja']:
+					hanjas.append(collection[word][pos][disambig_id]['hanja'])
+
+		freq = max(freqs)
+
+		# remove duplicate explanations, as with <수> and <현재>
+		# https://stackoverflow.com/questions/7961363/removing-duplicates-in-lists
+		explanations = list(dict.fromkeys(explanations))
+		# XXX: sort explanation by frequency?
+		explanation = ';;'.join(explanations)
+		#if explanation != '':
+			#explanation = '::' + re.sub(r' ', '__', explanation)
+		explanation = '::' + '[' + word + ']' + re.sub(r' ', '__', explanation) + '=='
+		# →"yes, this word is in the dictionary"
+
+		# remove duplicate hanjas, as with <각각>
+		hanjas = list(dict.fromkeys(hanjas))
+
+		print(str('' if freq == -1 else freq) + '\t' + word + '\t' + rom + explanation)
+
+		for hanja in hanjas:
+			if freq != -1:
+				freq -= 1
+			explanation = '::' + '[' + word + ']' + '=='
+			print(str('' if freq == -1 else freq) + '\t' + hanja + '\t' + rom + explanation)
 
 
 def generate_gyoyugyong_gicho_hanja_dict():
