@@ -1,137 +1,4 @@
-break_modern_jamo:
-  - xform/ᄁ/ᄀᄀ/
-  - xform/ᄄ/ᄃᄃ/
-  - xform/ᄈ/ᄇᄇ/
-  - xform/ᄊ/ᄉᄉ/
-  - xform/ᄍ/ᄌᄌ/
-
-  - xform/ᅤ/Jᅡᅵ/
-  - xform/ᅨ/Jᅥᅵ/
-  - xform/ᅫ/ᅩᅡᅵ/
-  - xform/ᅰ/ᅮᅥᅵ/
-  - xform/ᅣ/Jᅡ/
-  - xform/ᅧ/Jᅥ/
-  - xform/ᅭ/Jᅩ/
-  - xform/ᅲ/Jᅮ/
-  - xform/ᅢ/ᅡᅵ/
-  - xform/ᅦ/ᅥᅵ/
-  - xform/ᅪ/ᅩᅡ/
-  - xform/ᅬ/ᅩᅵ/
-  - xform/ᅯ/ᅮᅥ/
-  - xform/ᅱ/ᅮᅵ/
-  - xform/ᅴ/ᅳᅵ/
-
-  - xform/ᆩ/ᆨᆨ/
-  - xform/ᆪ/ᆨᆺ/
-  - xform/ᆬ/ᆫᆽ/
-  - xform/ᆭ/ᆫᇂ/
-  - xform/ᆰ/ᆯᆨ/
-  - xform/ᆱ/ᆯᆷ/
-  - xform/ᆲ/ᆯᆸ/
-  - xform/ᆳ/ᆯᆺ/
-  - xform/ᆴ/ᆯᇀ/
-  - xform/ᆵ/ᆯᇁ/
-  - xform/ᆶ/ᆯᇂ/
-  - xform/ᆹ/ᆸᆺ/
-  - xform/ᆻ/ᆺᆺ/
-
-  # compatibility jamo
-  - xform/ㅩ/ᄅᄀᄉ/
-  - xform/ㅫ/ᄅᄇᄉ/
-  - xform/ㅴ/ᄇᄉᄀ/
-  - xform/ㅵ/ᄇᄉᄃ/
-  - xform/ㄲ/ᄀᄀ/
-  - xform/ㄸ/ᄃᄃ/
-  - xform/ㅃ/ᄇᄇ/
-  - xform/ㄳ/ᄀᄉ/
-  - xform/ㄵ/ᄂᄌ/
-  - xform/ㄶ/ᄂᄒ/
-  - xform/ㄺ/ᄅᄀ/
-  - xform/ㄻ/ᄅᄆ/
-  - xform/ㄼ/ᄅᄇ/
-  - xform/ㄽ/ᄅᄉ/
-  - xform/ㄾ/ᄅᄐ/
-  - xform/ㄿ/ᄅᄑ/
-  - xform/ㅀ/ᄅᄒ/
-  - xform/ㅄ/ᄇᄉ/
-  - xform/ㅆ/ᄉᄉ/
-  - xform/ㅉ/ᄌᄌ/
-  - xform/ㅥ/ᄂᄂ/
-  - xform/ㅦ/ᄂᄃ/
-  - xform/ㅧ/ᄂᄉ/
-  - xform/ㅨ/ᄂᅀ/
-  - xform/ㅪ/ᄅᄃ/
-  - xform/ㅬ/ᄅᅀ/
-  - xform/ㅭ/ᄅᅙ/
-  - xform/ㅮ/ᄆᄇ/
-  - xform/ㅯ/ᄆᄉ/
-  - xform/ㅰ/ᄆᅀ/
-  - xform/ㅲ/ᄇᄀ/
-  - xform/ㅳ/ᄇᄃ/
-  - xform/ㅶ/ᄇᄌ/
-  - xform/ㅷ/ᄇᄐ/
-  - xform/ㅹ/ᄫᄫ/
-  - xform/ㅺ/ᄉᄀ/
-  - xform/ㅻ/ᄉᄂ/
-  - xform/ㅼ/ᄉᄃ/
-  - xform/ㅽ/ᄉᄇ/
-  - xform/ㅾ/ᄉᄌ/
-  - xform/ㆀ/ᄋᄋ/
-  - xform/ㆂ/ᅌᄉ/
-  - xform/ㆃ/ᅌᅀ/
-  - xform/ㆅ/ᄒᄒ/
-  - xform/ㄱ/ᄀ/
-  - xform/ㄴ/ᄂ/
-  - xform/ㄷ/ᄃ/
-  - xform/ㄹ/ᄅ/
-  - xform/ㅁ/ᄆ/
-  - xform/ㅂ/ᄇ/
-  - xform/ㅅ/ᄉ/
-  - xform/ㅇ/ᄋ/
-  - xform/ㅈ/ᄌ/
-  - xform/ㅊ/ᄎ/
-  - xform/ㅋ/ᄏ/
-  - xform/ㅌ/ᄐ/
-  - xform/ㅍ/ᄑ/
-  - xform/ㅎ/ᄒ/
-  - xform/ㅤ/ᅟ/ # filler
-  - xform/ㅱ/ᄝ/
-  - xform/ㅸ/ᄫ/
-  - xform/ㅿ/ᅀ/
-  - xform/ㆁ/ᅌ/
-  - xform/ㆄ/ᅗ/
-  - xform/ㆆ/ᅙ/
-
-  - xform/ㆈ/JᅩJᅡᅵ/
-  - xform/ㆋ/JᅮJᅥᅵ/
-  - xform/ㆇ/JᅩJᅡ/
-  - xform/ㆊ/JᅮJᅥ/
-  - xform/ㅒ/Jᅡᅵ/
-  - xform/ㅖ/Jᅥᅵ/
-  - xform/ㅙ/ᅩᅡᅵ/
-  - xform/ㅞ/ᅮᅥᅵ/
-  - xform/ㆉ/Jᅩᅵ/
-  - xform/ㆌ/Jᅮᅵ/
-  - xform/ㅐ/ᅡᅵ/
-  - xform/ㅑ/Jᅡ/
-  - xform/ㅔ/ᅥᅵ/
-  - xform/ㅕ/Jᅥ/
-  - xform/ㅘ/ᅩᅡ/
-  - xform/ㅚ/ᅩᅵ/
-  - xform/ㅛ/Jᅩ/
-  - xform/ㅝ/ᅮᅥ/
-  - xform/ㅟ/ᅮᅵ/
-  - xform/ㅠ/Jᅮ/
-  - xform/ㅢ/ᅳᅵ/
-  - xform/ㅏ/ᅡ/
-  - xform/ㅓ/ᅥ/
-  - xform/ㅗ/ᅩ/
-  - xform/ㅜ/ᅮ/
-  - xform/ㅡ/ᅳ/
-  - xform/ㅣ/ᅵ/
-  - xform/ㆍ/ᆞ/
-
-break_old_jamo:
+break_jamo:
   - xform/ᄢ/ᄇᄉᄀ/
   - xform/ᄣ/ᄇᄉᄃ/
   - xform/ᄤ/ᄇᄉᄇ/
@@ -435,44 +302,103 @@ break_old_jamo:
   - xform/ퟺ/ᇁᆺ/
   - xform/ퟻ/ᇁᇀ/
 
-unbreak_modern_jamo:
-  - xform/ᄀᄀ/ᄁ/
-  - xform/ᄃᄃ/ᄄ/
-  - xform/ᄇᄇ/ᄈ/
-  - xform/ᄉᄉ/ᄊ/
-  - xform/ᄌᄌ/ᄍ/
+  # compatibility jamo
+  - xform/ㅩ/ᄅᄀᄉ/
+  - xform/ㅫ/ᄅᄇᄉ/
+  - xform/ㅴ/ᄇᄉᄀ/
+  - xform/ㅵ/ᄇᄉᄃ/
+  - xform/ㄲ/ᄀᄀ/
+  - xform/ㄸ/ᄃᄃ/
+  - xform/ㅃ/ᄇᄇ/
+  - xform/ㄳ/ᄀᄉ/
+  - xform/ㄵ/ᄂᄌ/
+  - xform/ㄶ/ᄂᄒ/
+  - xform/ㄺ/ᄅᄀ/
+  - xform/ㄻ/ᄅᄆ/
+  - xform/ㄼ/ᄅᄇ/
+  - xform/ㄽ/ᄅᄉ/
+  - xform/ㄾ/ᄅᄐ/
+  - xform/ㄿ/ᄅᄑ/
+  - xform/ㅀ/ᄅᄒ/
+  - xform/ㅄ/ᄇᄉ/
+  - xform/ㅆ/ᄉᄉ/
+  - xform/ㅉ/ᄌᄌ/
+  - xform/ㅥ/ᄂᄂ/
+  - xform/ㅦ/ᄂᄃ/
+  - xform/ㅧ/ᄂᄉ/
+  - xform/ㅨ/ᄂᅀ/
+  - xform/ㅪ/ᄅᄃ/
+  - xform/ㅬ/ᄅᅀ/
+  - xform/ㅭ/ᄅᅙ/
+  - xform/ㅮ/ᄆᄇ/
+  - xform/ㅯ/ᄆᄉ/
+  - xform/ㅰ/ᄆᅀ/
+  - xform/ㅲ/ᄇᄀ/
+  - xform/ㅳ/ᄇᄃ/
+  - xform/ㅶ/ᄇᄌ/
+  - xform/ㅷ/ᄇᄐ/
+  - xform/ㅹ/ᄫᄫ/
+  - xform/ㅺ/ᄉᄀ/
+  - xform/ㅻ/ᄉᄂ/
+  - xform/ㅼ/ᄉᄃ/
+  - xform/ㅽ/ᄉᄇ/
+  - xform/ㅾ/ᄉᄌ/
+  - xform/ㆀ/ᄋᄋ/
+  - xform/ㆂ/ᅌᄉ/
+  - xform/ㆃ/ᅌᅀ/
+  - xform/ㆅ/ᄒᄒ/
+  - xform/ㄱ/ᄀ/
+  - xform/ㄴ/ᄂ/
+  - xform/ㄷ/ᄃ/
+  - xform/ㄹ/ᄅ/
+  - xform/ㅁ/ᄆ/
+  - xform/ㅂ/ᄇ/
+  - xform/ㅅ/ᄉ/
+  - xform/ㅇ/ᄋ/
+  - xform/ㅈ/ᄌ/
+  - xform/ㅊ/ᄎ/
+  - xform/ㅋ/ᄏ/
+  - xform/ㅌ/ᄐ/
+  - xform/ㅍ/ᄑ/
+  - xform/ㅎ/ᄒ/
+  - xform/ㅤ/ᅟ/ # filler
+  - xform/ㅱ/ᄝ/
+  - xform/ㅸ/ᄫ/
+  - xform/ㅿ/ᅀ/
+  - xform/ㆁ/ᅌ/
+  - xform/ㆄ/ᅗ/
+  - xform/ㆆ/ᅙ/
 
-  - xform/Jᅡᅵ/ᅤ/
-  - xform/Jᅥᅵ/ᅨ/
-  - xform/ᅩᅡᅵ/ᅫ/
-  - xform/ᅮᅥᅵ/ᅰ/
-  - xform/Jᅡ/ᅣ/
-  - xform/Jᅥ/ᅧ/
-  - xform/Jᅩ/ᅭ/
-  - xform/Jᅮ/ᅲ/
-  - xform/ᅡᅵ/ᅢ/
-  - xform/ᅥᅵ/ᅦ/
-  - xform/ᅩᅡ/ᅪ/
-  - xform/ᅩᅵ/ᅬ/
-  - xform/ᅮᅥ/ᅯ/
-  - xform/ᅮᅵ/ᅱ/
-  - xform/ᅳᅵ/ᅴ/
+  - xform/ㆈ/JᅩJᅡᅵ/
+  - xform/ㆋ/JᅮJᅥᅵ/
+  - xform/ㆇ/JᅩJᅡ/
+  - xform/ㆊ/JᅮJᅥ/
+  - xform/ㅒ/Jᅡᅵ/
+  - xform/ㅖ/Jᅥᅵ/
+  - xform/ㅙ/ᅩᅡᅵ/
+  - xform/ㅞ/ᅮᅥᅵ/
+  - xform/ㆉ/Jᅩᅵ/
+  - xform/ㆌ/Jᅮᅵ/
+  - xform/ㅐ/ᅡᅵ/
+  - xform/ㅑ/Jᅡ/
+  - xform/ㅔ/ᅥᅵ/
+  - xform/ㅕ/Jᅥ/
+  - xform/ㅘ/ᅩᅡ/
+  - xform/ㅚ/ᅩᅵ/
+  - xform/ㅛ/Jᅩ/
+  - xform/ㅝ/ᅮᅥ/
+  - xform/ㅟ/ᅮᅵ/
+  - xform/ㅠ/Jᅮ/
+  - xform/ㅢ/ᅳᅵ/
+  - xform/ㅏ/ᅡ/
+  - xform/ㅓ/ᅥ/
+  - xform/ㅗ/ᅩ/
+  - xform/ㅜ/ᅮ/
+  - xform/ㅡ/ᅳ/
+  - xform/ㅣ/ᅵ/
+  - xform/ㆍ/ᆞ/
 
-  - xform/ᆨᆨ/ᆩ/
-  - xform/ᆨᆺ/ᆪ/
-  - xform/ᆫᆽ/ᆬ/
-  - xform/ᆫᇂ/ᆭ/
-  - xform/ᆯᆨ/ᆰ/
-  - xform/ᆯᆷ/ᆱ/
-  - xform/ᆯᆸ/ᆲ/
-  - xform/ᆯᆺ/ᆳ/
-  - xform/ᆯᇀ/ᆴ/
-  - xform/ᆯᇁ/ᆵ/
-  - xform/ᆯᇂ/ᆶ/
-  - xform/ᆸᆺ/ᆹ/
-  - xform/ᆺᆺ/ᆻ/
-
-unbreak_old_jamo:
+unbreak_jamo:
   - xform/ᄇᄉᄀ/ᄢ/
   - xform/ᄇᄉᄃ/ᄣ/
   - xform/ᄇᄉᄇ/ᄤ/
