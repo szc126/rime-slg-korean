@@ -43,7 +43,45 @@ speller:
   alphabet: "abcdefghijklmnopqrstuvwxyz~ABCDEFGHIJKLMNOPQRSTUVWXYZ*`'"
   delimiter: " "
   algebra:
-    - "xform/^~~//"
+    __include: slg_break_jamo:/break_jamo
+    __append:
+      # remove "hangul jamo" marker
+      - xform/^~~//
+
+      # transliterate letters
+      - xform ᄼᄼ `ss
+      - xform ᅎᅎ `zz
+      - xform ᅔᅔ `cc
+      - xform ᄾᄾ ss`
+      - xform ᅐᅐ zz`
+      - xform ᅕᅕ cc`
+
+      - xform 〮 '
+      - xform 〯 ''
+
+      - xlit ᄀᄂᄃᄅᄆᄇᄉᄋᄌᄎᄏᄐᄑᄒ gndlmbsqzcktph
+      - xlit ᄝᄫᅗ wvf
+      - xform ᄛ l`
+      - xform ᅌ q`
+      - xform ᅀ r
+      - xform ᅙ x
+      - xform ᄼ `s
+      - xform ᅎ `z
+      - xform ᅔ `c
+      - xform ᄾ s`
+      - xform ᅐ z`
+      - xform ᅕ c`
+      - xform ᅟ ff # filler
+
+      - xlit Jᅡᅥᅩᅮᅳᅵᆞ jaeouyi*
+      - xform ᅠ jj # filler
+
+      - xlit ᆨᆫᆮᆯᆷᆸᆺᆼᆽᆾᆿᇀᇁᇂ GNDLMBSQZCKTPH
+      - xlit ᇢᇦᇴ WVF
+      - xform ퟝ L`
+      - xform ᇰ Q`
+      - xform ᇫ R
+      - xform ᇹ X
 
 translator:
   dictionary: slg_yethangeul
