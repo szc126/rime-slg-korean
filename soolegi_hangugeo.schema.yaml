@@ -62,6 +62,7 @@ speller:
 
       # standalone jamo
       - xform/^~(g|gg|gs|n|nz|nh|d|dd|l|lg|lm|lb|ls|lt|lp|lh|m|b|bb|bs|s|ss|q|z|zz|c|k|t|p|h)$/$1/
+      - xform/^~(a|ai|ja|jai|e|ei|je|jei|o|oa|oai|oi|jo|u|ue|uei|ui|ju|y|yi|i)$/$1/
 
 translator:
   dictionary: slg_hangugeo
