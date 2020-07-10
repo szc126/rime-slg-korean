@@ -20,22 +20,32 @@ speller:
   alphabet: "`abcdefghijklmnopqrstuvwxyz"
   delimiter: " "
   algebra:
-    - "xform/:.+/:/" # remove Hangeul; preserve a colon you cannot input, so that the annotation (completion) is never removed
-    - "xform/_//" # remove spaces
+    __include: slg_break_jamo:/break_jamo
+    __append:
+      # transliterate letters
+      - xlit ᄀᄂᄃᄅᄆᄇᄉᄋᄌᄎᄏᄐᄑᄒ gndlmbsqzcktph
+      - xlit Jᅡᅥᅩᅮᅳᅵ jaeouyi
+      - xlit ᆨᆫᆮᆯᆷᆸᆺᆼᆽᆾᆿᇀᇁᇂ gndlmbsqzcktph
 
-    - "xform/^/`/" # prefixed 訓 search
-    - "derive/^`[a-z]+//" # 音 search
-    - "xlit ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+      # remove variant hanja annotation
+      - xform/\[.+//
+
+      # 訓 with `-prefix
+      # 音
+      - xform/^/`/
+      - derive/^(.+)_([a-z]+)$/$2/
+
+      # remove spaces
+      - xform/_//
 
 translator:
   dictionary: slg_hanja
   prism: soolegi_hanja
   spelling_hints: 20
   preedit_format:
-    - "xform/^(?=[^`])/【音】/"
-    - "xform/^`/【訓】/"
+    - xform/(^| )(?=[^`])/【音】/
+    - xform/(^| )`/【訓】/
   comment_format:
-    - "xform/.+:/ /" # remove romanization
-    - "xform/_/ /"
-    - "xform/[[]/【/"
-    - "xform/[]]/】/"
+    - xform/_/ /
+    - xform/[[]/【/
+    - xform/[]]/】/
