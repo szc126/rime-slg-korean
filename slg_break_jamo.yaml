@@ -194,7 +194,7 @@ break_jamo:
   - xform/ᇔ/ᆯᆸᇂ/
   - xform/ᇖ/ᆯᆺᆺ/
   - xform/ᇞ/ᆷᆺᆺ/
-  - xform/ᇭ/ᆼᆨᆨ/
+  - xform/ᇭ/ᇰᆨᆨ/
   - xform/ퟎ/ᆮᆮᆸ/
   - xform/ퟑ/ᆮᆺᆨ/
   - xform/ퟕ/ᆯᆨᆨ/
@@ -253,9 +253,9 @@ break_jamo:
   - xform/ᇨ/ᆺᆮ/
   - xform/ᇩ/ᆺᆯ/
   - xform/ᇪ/ᆺᆸ/
-  - xform/ᇬ/ᆼᆨ/
-  - xform/ᇮ/ᆼᆼ/
-  - xform/ᇯ/ᆼᆿ/
+  - xform/ᇬ/ᇰᆨ/
+  - xform/ᇮ/ᇰᇰ/
+  - xform/ᇯ/ᇰᆿ/
   - xform/ᇱ/ᇰᆺ/
   - xform/ᇲ/ᇰᇫ/
   - xform/ᇳ/ᇁᆸ/
@@ -594,7 +594,7 @@ unbreak_jamo:
   - xform/ᆯᆸᇂ/ᇔ/
   - xform/ᆯᆺᆺ/ᇖ/
   - xform/ᆷᆺᆺ/ᇞ/
-  - xform/ᆼᆨᆨ/ᇭ/
+  - xform/ᇰᆨᆨ/ᇭ/
   - xform/ᆮᆮᆸ/ퟎ/
   - xform/ᆮᆺᆨ/ퟑ/
   - xform/ᆯᆨᆨ/ퟕ/
@@ -653,9 +653,9 @@ unbreak_jamo:
   - xform/ᆺᆮ/ᇨ/
   - xform/ᆺᆯ/ᇩ/
   - xform/ᆺᆸ/ᇪ/
-  - xform/ᆼᆨ/ᇬ/
-  - xform/ᆼᆼ/ᇮ/
-  - xform/ᆼᆿ/ᇯ/
+  - xform/ᇰᆨ/ᇬ/
+  - xform/ᇰᇰ/ᇮ/
+  - xform/ᇰᆿ/ᇯ/
   - xform/ᇰᆺ/ᇱ/
   - xform/ᇰᇫ/ᇲ/
   - xform/ᇁᆸ/ᇳ/
