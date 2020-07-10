@@ -30,6 +30,7 @@ speller:
 translator:
   dictionary: slg_hanja
   prism: soolegi_hanja
+  spelling_hints: 20
   preedit_format:
     - "xform/^(?=[^`])/【音】/"
     - "xform/^`/【訓】/"
