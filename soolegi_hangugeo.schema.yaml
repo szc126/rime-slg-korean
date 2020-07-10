@@ -48,16 +48,29 @@ speller:
   initials: "abcdefghijklmnopqrstuvwxyz~"
   delimiter: " ."
   algebra:
-    - "xform/:::.*//"
+    __include: slg_break_jamo:/break_jamo
+    __append:
+      # transliterate letters
+      - xlit ᄀᄂᄃᄅᄆᄇᄉᄋᄌᄎᄏᄐᄑᄒ gndlmbsqzcktph
+      - xlit Jᅡᅥᅩᅮᅳᅵ jaeouyi
+      - xlit ᆨᆫᆮᆯᆷᆸᆺᆼᆽᆾᆿᇀᇁᇂ gndlmbsqzcktph
 
-    - "xform/^~(g|gg|gs|n|nz|nh|d|dd|l|lg|lm|lb|ls|lt|lp|lh|m|b|bb|bs|s|ss|q|z|zz|c|k|t|p|h)$/$1/"
+      # remove explanation annotation
+      - xform/^\[\[//
+      - xform/\|\|.+//
+      - xform/\]\]$//
+
+      # standalone jamo
+      - xform/^~(g|gg|gs|n|nz|nh|d|dd|l|lg|lm|lb|ls|lt|lp|lh|m|b|bb|bs|s|ss|q|z|zz|c|k|t|p|h)$/$1/
 
 translator:
   dictionary: slg_hangugeo
   prism: soolegi_hangugeo
   spelling_hints: 20
   comment_format:
-    - "xform/:::.+//"
+    - xform/ //
+    - xform/\[\[(.*?)\|\|(.*?)\]\]/$1/
+    - xform/\[\[(.*?)\]\]/$1/
 
 hanja:
   tag: "hanja"
