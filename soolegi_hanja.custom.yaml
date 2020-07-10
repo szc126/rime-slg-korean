@@ -1,20 +1,28 @@
 patch:
   "speller/algebra":
-    - "xform/ai/v/"
-    - "xform/ei/w/"
-    - "xform/q([a-z])/$1/"
-    - "xform/AI/V/"
-    - "xform/EI/W/"
-    - "xform/Q([A-Z])/$1/"
+    __include: slg_break_jamo:/break_jamo
+    __append:
+      # modify romanization
+      - xform/ᅡᅵ/v/
+      - xform/ᅥᅵ/w/
+      - xform/ᄋ//
 
-    - "xform/:.+/:/" # remove Hangeul; preserve a colon you cannot input, so that the annotation (completion) is never removed
-    - "xform/_//" # remove spaces
+      # ----
 
-    - "xform/^/`/" # prefixed 訓 search
-    - "derive/^`[a-z]+//" # 音 search
-    - "xlit ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+      # transliterate letters
+      - xlit ᄀᄂᄃᄅᄆᄇᄉᄋᄌᄎᄏᄐᄑᄒ gndlmbsqzcktph
+      - xlit Jᅡᅥᅩᅮᅳᅵ jaeouyi
+      - xlit ᆨᆫᆮᆯᆷᆸᆺᆼᆽᆾᆿᇀᇁᇂ gndlmbsqzcktph
+
+      # remove variant hanja annotation
+      - xform/\[.+//
+
+      # 訓 with `-prefix
+      # 音
+      - xform/^/`/
+      - derive/^(.+)_([a-z]+)$/$2/
+
+      # remove spaces
+      - xform/_//
 
   "translator/enable_user_dict": false
-  "translator/preedit_format/+":
-    - "xform/v/ai/"
-    - "xform/w/ei/"
