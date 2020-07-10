@@ -2,14 +2,53 @@ patch:
   "speller/alphabet": "~bcdfghklmnpqrstvwxz0`aeijouy;'."
   "speller/initials": "~bcdfghklmnpqrstvwxz0`aeijouy;'"
   "speller/algebra":
-    - "xform/^~~//"
+    __include: slg_break_jamo:/break_jamo
+    __append:
+      - xform/^(~~[ᆨᆫᆮᆯᆷᆸᆺᆼᆽᆾᆿᇀᇁᇂᇢᇦᇫᇰᇴᇹퟝ]+)$/$1./ # append a full stop to jungseong
 
-    - "xform/[*]/;/" # arae-a
+      # ----
 
-    - "xform/^([BCDFGHKLMNPQRSTVWXZ]+`?)$/$1./" # full stop for jungseong
-    - "xlit BCDFGHKLMNPQRSTVWXZ bcdfghklmnpqrstvwxz"
-    - "xform/^(~.+)$/$1./" # use a full stop to end compat jamo
-    - "xform/q`/0/" # yesieung. not like we need the candidate list anyway
+      # remove "hangul jamo" marker
+      - xform/^~~//
+
+      # transliterate letters
+      - xform ᄼᄼ `ss
+      - xform ᅎᅎ `zz
+      - xform ᅔᅔ `cc
+      - xform ᄾᄾ ss`
+      - xform ᅐᅐ zz`
+      - xform ᅕᅕ cc`
+
+      - xform 〮 '
+      - xform 〯 ''
+
+      - xlit ᄀᄂᄃᄅᄆᄇᄉᄋᄌᄎᄏᄐᄑᄒ gndlmbsqzcktph
+      - xlit ᄝᄫᅗ wvf
+      - xform ᄛ l`
+      - xform ᅌ 0 # yesieung '0'
+      - xform ᅀ r
+      - xform ᅙ x
+      - xform ᄼ `s
+      - xform ᅎ `z
+      - xform ᅔ `c
+      - xform ᄾ s`
+      - xform ᅐ z`
+      - xform ᅕ c`
+      - xform ᅟ ff # filler
+
+      - xlit Jᅡᅥᅩᅮᅳᅵᆞ jaeouyi; # arae-a ';'
+      - xform ᅠ jj # filler
+
+      - xlit ᆨᆫᆮᆯᆷᆸᆺᆼᆽᆾᆿᇀᇁᇂ gndlmbsqzcktph
+      - xlit ᇢᇦᇴ wvf
+      - xform ퟝ l`
+      - xform ᇰ 0 # yesieung '0'
+      - xform ᇫ r
+      - xform ᇹ x
+
+      # ----
+
+      - xform/^(~.+)$/$1./ # append a full stop to compat jamo
 
   "translator/preedit_format":
     - "xform/;/*/"
