@@ -37,7 +37,7 @@ engine:
   translators:
     - punct_translator
     - script_translator
-    - table_translator@hanja
+    - script_translator@hanja
     - script_translator@old_korean
   filters:
     - simplifier
