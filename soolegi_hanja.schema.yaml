@@ -14,7 +14,7 @@ engine:
   segmentors:
     - abc_segmentor
   translators:
-    - table_translator
+    - script_translator
 
 speller:
   alphabet: "`abcdefghijklmnopqrstuvwxyz"
