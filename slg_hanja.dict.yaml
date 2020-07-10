@@ -3,7 +3,7 @@
 ---
 name: "slg_hanja"
 version: "alpha"
-sort: "by_weight"
+sort: "original"
 import_tables:
   - ko__gyoyugyong_gicho_hanja
 ...
