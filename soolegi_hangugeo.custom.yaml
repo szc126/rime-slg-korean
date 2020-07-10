@@ -1,27 +1,31 @@
 patch:
   "speller/algebra":
-    - "xform/::.*//"
+    __include: slg_break_jamo:/break_jamo
+    __append:
+      # modify romanization
+      # mnemonics:
+      # - compare shape of V to shape of A
+      # - compare shape of W to shape of E; note that W is related to V
+      - xform/ᅡᅵ/v/
+      - xform/ᅥᅵ/w/
+      # /^/:    allow for syllables dict
+      # /\[\[/: allow for dict with explanation
+      - xform/(^|\[\[)ᄋ/$1/
 
-    - "xform/^q//"
+      # ----
 
-    - "xform/ai/v/"
-    - "xform/ei/w/"
-    # mnemonics:
-    # - compare shape of V to shape of A
-    # - compare shape of W to shape of E; note that W is related to V
+      # transliterate letters
+      - xlit ᄀᄂᄃᄅᄆᄇᄉᄋᄌᄎᄏᄐᄑᄒ gndlmbsqzcktph
+      - xlit Jᅡᅥᅩᅮᅳᅵ jaeouyi
+      - xlit ᆨᆫᆮᆯᆷᆸᆺᆼᆽᆾᆿᇀᇁᇂ gndlmbsqzcktph
 
-    #- "xform/jo/oo/"
-    #- "xform/ja/aa/"
-    #- "xform/ju/uu/"
-    #- "xform/je/ee/"
-    #- "xform/jv/vv/"
-    #- "xform/jw/ww/"
+      # remove explanation annotation
+      - xform/^\[\[//
+      - xform/\|\|.+//
+      - xform/\]\]$//
 
-    - "xform/^~(g|gg|gs|n|nz|nh|d|dd|l|lg|lm|lb|ls|lt|lp|lh|m|b|bb|bs|s|ss|q|z|zz|c|k|t|p|h)$/$1/"
-
-  "translator/preedit_format":
-    - "xform/v/ai/"
-    - "xform/w/ei/"
+      # standalone jamo
+      - xform/^~(g|gg|gs|n|nz|nh|d|dd|l|lg|lm|lb|ls|lt|lp|lh|m|b|bb|bs|s|ss|q|z|zz|c|k|t|p|h)$/$1/
 
   "translator/comment_format":
     #- "xlit| |.|"
@@ -29,26 +33,22 @@ patch:
     #- "xform/([*yioaue])\\.([gkqdtnbpmzcsxhlr`]+)(?=[*yioaue])/$1$2/"
 
     # いい子はマネしないでね
-    # discard of non-explanations (hangeul readings)
-    - "xform/^[ a-z~A-Z*`']+:://"
-    - "xform/==[ a-z~A-Z*`']+:://"
-    - "xform/==[ a-z~A-Z*`']*$//"
+    # remove non-explanation text
+    #- xform/^([]*?)(\[\[)/$2/
+    #- xform/(\]\])([]*?)(\[\[)/$1$3/
+    #- xform/(\]\])([]*?)$/$1/
     # format explanation
-    - "xform/[[]/【/"
-    - "xform/[]]/】/"
-    - "xform/;;/◇/"
-    - "xform/__/ /"
+    - xform/ //
+    - xform/\[\[(.*?)\|\|(.*?)\]\]/【$1】$2/
+    - xform/\[\[(.*?)\]\]/【$1】/
+    - xform/\|\|/◇/
+    - xform/__/ /
 
     # keep compat jamo readings
     # as in the suggestion list that appears
     # when you input ~
     # otherwise, discard non-explanations
-    - "xform/^(?:(~~?[a-zA-Z*`']+)|[ a-z~A-Z*`']+)$/$1/"
-
-    # TEST: sinaibesysinaibesy
-    # "bus" of the first gloss
-    # should not be deleted together with
-    # the Latn of the second "si nai"
+    #- "xform/^(?:(~~?[a-zA-Z*`']+)|[ a-z~A-Z*`']+)$/$1/"
 
   "recognizer/patterns/old_korean": "J[~a-z0`;'.]*$"
   "old_korean/suffix": Null
