@@ -12,57 +12,108 @@ speller:
   alphabet: "~qwertyuiopasdfghjklzxcvbnm`'QWERTYUIOPASDFGHJKLZXCVBNM."
   initials: "~qwertyuiopasdfghjklzxcvbnm`'QWERTYUIOPASDFGHJKLZXCVBNM"
   algebra:
-    - "xform/^~~//"
+    __include: slg_break_jamo:/break_jamo
+    __append:
+      - xform/^(~~[ᆨᆫᆮᆯᆷᆸᆺᆼᆽᆾᆿᇀᇁᇂᇢᇦᇫᇰᇴᇹퟝ]+)$/$1./ # append a full stop to jungseong
 
-    # from `soolegi_yethangeul.custom.yaml`
-    - "xform/^([BCDFGHKLMNPQRSTVWXZ]+`?)$/$1./" # full stop for jungseong
-    - "xlit BCDFGHKLMNPQRSTVWXZ bcdfghklmnpqrstvwxz"
-    - "xform/^(~.+)$/$1./" # use a full stop to end compat jamo
+      # remove "hangul jamo" marker
+      - xform/^~~//
 
-    - "xlit j !"
-    - "xlit bzdgsmnqlhktcpoeaiuyxrvfw qwertasdfgzxcvhjklnm23456"
-    # kbRow 1....2....3...2...3.X.... 1....2....3...2...3.X....
-    #       C             V     yetHan
+      # transliterate letters
+      - xform/〮/'/
+      - xform/〯/''/
 
-    - "xform/qq/Q/" # ㅃ、Shiftㅂ
-    - "xform/ww/W/" # ㅉ、Sㅈ
-    - "xform/ee/E/" # ㄸ、Sㄷ
-    - "xform/rr/R/" # ㄲ、Sㄱ
-    - "xform/tt/T/" # ㅆ、Sㅅ
+      - xform/ᄇᄇ/●ᄇ/ # ㅃ
+      - xform/ᄌᄌ/●ᄌ/ # ㅉ
+      - xform/ᄃᄃ/●ᄃ/ # ㄸ
+      - xform/ᄀᄀ/●ᄀ/ # ㄲ
+      - xform/ᄉᄉ/●ᄉ/ # ㅆ
+      - xform/ᄆᄆ/●ᄆ/ # 쌍ㅁ
+      - xform/ᄂᄂ/●ᄂ/ # 쌍ㄴ
+      - xform/ᄋᄋ/●ᄋ/ # 쌍ㅇ
+      - xform/ᄅᄅ/●ᄅ/ # 쌍ㄹ
+      - xform/ᄒᄒ/●ᄒ/ # 쌍ㅎ
+      - xform/ᄏᄏ/●ᄏ/ # 쌍ㅋ
+      - xform/ᄐᄐ/●ᄐ/ # 쌍ㅌ
+      - xform/ᄎᄎ/●ᄎ/ # 쌍ㅊ
+      - xform/ᄑᄑ/●ᄑ/ # 쌍ㅍ
+      - xform/ᄫᄫ/●ᄇ●ᄇ/ # 가벼운쌍ㅂ
 
-    - "xform/xx/X/" # 쌍ㅌ、Sㅌ
-    - "xform/ss/S/" # 쌍ㄴ、Sㄴ
-    - "xform/aa/A/" # 쌍ㅁ、Sㅁ
-    - "xform/gg/G/" # 쌍ㅎ、Sㅎ
-    - "xform/dd/D/" # 쌍ㅇ、Sㅇ
-    - "xform/ff/F/" # 쌍ㄹ、Sㄹ
+      - xform/Jᅡᅵ/●ᅡᅵ/ # 얘
+      - xform/Jᅥᅵ/●ᅥᅵ/ # 예
+      - xform/ᆞᆞ/●ᅡ●ᅡ/ # 쌍아래아
+      - xform/ᅵᆞ/●ᅡ●ᅡ●ᅡ/ # 이아래아
+      - xform/ᅵᅵ/●ᅵ/ # 쌍이
+      - xform/ᅳᅳ/●ᅳ/ # 쌍으
 
-    - "xform/33/ff/" # 가벼운ㄹ、ㄹㄹ
-    - "xform/44/QQ/" # 가벼운ㅃ、SㅂSㅂ、ㅃㅃ
-    #- "xform/55//" # choseong filler # XXX
-    #- "xform/!!//" # jungseong filler # XXX
+      - xform/ᆸᆸ/●ᆸ/ # ㅃ
+      - xform/ᆽᆽ/●ᆽ/ # ㅉ
+      - xform/ᆮᆮ/●ᆮ/ # ㄸ
+      - xform/ᆨᆨ/●ᆨ/ # ㄲ
+      - xform/ᆺᆺ/●ᆺ/ # ㅆ
+      - xform/ᆷᆷ/●ᆷ/ # 쌍ㅁ
+      - xform/ᆫᆫ/●ᆫ/ # 쌍ㄴ
+      - xform/ᆼᆼ/●ᆼ/ # 쌍ㅇ
+      - xform/ᆯᆯ/●ᆯ/ # 쌍ㄹ
+      - xform/ᇂᇂ/●ᇂ/ # 쌍ㅎ
+      - xform/ᆿᆿ/●ᆿ/ # 쌍ㅋ
+      - xform/ᇀᇀ/●ᇀ/ # 쌍ㅌ
+      - xform/ᆾᆾ/●ᆾ/ # 쌍ㅊ
+      - xform/ᇁᇁ/●ᇁ/ # 쌍ㅍ
+      - xform/ᇦᇦ/●ᆸ●ᆸ/ # 가벼운쌍ㅂ
 
-    - "xform/d`/dd/" # 옛ㅇ、ㅇㅇ
-    - "xform/2/gg/" # 여린ㅎ、ㅎㅎ
-    - "xform/3/tt/" # 반ㅅ、ㅅㅅ
-    - "xform/4/qq/" # 가벼운ㅂ、ㅂㅂ
-    - "xform/5/vv/" # 가벼운ㅍ、ㅍㅍ
-    - "xform/6/aa/" # 가벼운ㅁ、ㅁㅁ
+      - xform/ᄼᄼ/`●ᄉ/
+      - xform/ᅎᅎ/`●ᄌ/
+      - xform/ᅔᅔ/`●ᄎ/
+      - xform/ᄾᄾ/●ᄉ`/
+      - xform/ᅐᅐ/●ᄌ`/
+      - xform/ᅕᅕ/●ᄎ`/
 
-    - "xform/!h/y/" # ㅛ
-    - "xform/!j/u/" # ㅠ
-    - "xform/!k/i/" # ㅑ
-    - "xform/kl/o/" # ㅐ
-    - "xform/il/O/" # ㅒ
-    - "xform/jl/p/" # ㅔ
-    - "xform/!p/P/" # ㅖ
-    - "xform/!n/b/" # ㅠ
+      - xform/ᄼ/`ᄉ/
+      - xform/ᅎ/`ᄌ/
+      - xform/ᅔ/`ᄎ/
+      - xform/ᄾ/ᄉ`/
+      - xform/ᅐ/ᄌ`/
+      - xform/ᅕ/ᄎ`/
 
-    - "xform/[*]/kk/" # 아래아、아아
-    - "xform/kkkk/KK/" # 쌍아래아、S아S아
-    - "xform/lkk/KKK/" # 이아래아、S아S아S아
-    - "xform/ll/L" # 쌍이、S이
-    - "xform/mm/M" # 쌍으、S으
+      - xform/ᄛ/ᄅᄅ/
+      - xform/ᄝ/ᄆᄆ/
+      - xform/ᄫ/ᄇᄇ/
+      - xform/ᅀ/ᄉᄉ/
+      - xform/ᅌ/ᄋᄋ/
+      - xform/ᅗ/ᄑᄑ/
+      - xform/ᅙ/ᄒᄒ/
+
+      - xform/ᆞ/ᅡᅡ/
+
+      - xform/ퟝ/ᆯᆯ/
+      - xform/ᇢ/ᆷᆷ/
+      - xform/ᇦ/ᆸᆸ/
+      - xform/ᇫ/ᆺᆺ/
+      - xform/ᇰ/ᆼᆼ/
+      - xform/ᇴ/ᇁᇁ/
+      - xform/ᇹ/ᇂᇂ/
+
+      # ----
+
+      - xlit|ᄇᄌᄃᄀᄉᄆᄂᄋᄅᄒᄏᄐᄎᄑ|qwertasdfgzxcv|
+
+      - xform/Jᅩ/y/ # ㅛ
+      - xform/Jᅥ/u/ # ㅕ
+      - xform/Jᅡ/i/ # ㅑ
+      - xform/ᅡᅵ/o/ # ㅐ
+      - xform/ᅥᅵ/p/ # ㅔ
+      - xform/Jᅮ/b/ # ㅠ
+      - xlit|ᅩᅥᅡᅵᅮᅳ|hjklnm|
+
+      - xlit|ᆸᆽᆮᆨᆺᆷᆫᆼᆯᇂᆿᇀᆾᇁ|qwertasdfgzxcv|
+
+      - xform/●(.)/\U$1/
+
+      # ----
+
+      #- /xform/ᅟ/ff/ # choseong filler # XXX
+      #- /xform/ᅠ/jj/ # jungseong filler # XXX
 
 translator:
   prism: slg_dubeolsik_yethangeul
