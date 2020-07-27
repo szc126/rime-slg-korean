@@ -231,5 +231,6 @@ RIME なんだからキーボード配列・ハングル表記法は自由に変
   * https://akorn.bab2min.pe.kr/input
     * https://github.com/bab2min/akorn-input
   * https://mujjingun.github.io/oko.html
+    * https://github.com/mujjingun/mujjingun.github.io
   * https://ohi.pat.im/
     * https://github.com/pat-al/Online-Hangeul-IME
