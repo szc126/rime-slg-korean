@@ -116,6 +116,10 @@ speller:
       #- /xform/ᅟ/ff/ # choseong filler # XXX
       #- /xform/ᅠ/jj/ # jungseong filler # XXX
 
+      # ----
+
+      - xform/^(~.+)$/$1./ # append a full stop to compat jamo
+
 translator:
   prism: slg_dubeolsik_yethangeul
   preedit_format:
