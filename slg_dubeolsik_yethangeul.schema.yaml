@@ -84,6 +84,7 @@ speller:
       - xform/ᅗ/ᄑᄑ/
       - xform/ᅙ/ᄒᄒ/
 
+      - xform/ᆞᅵ/ᅡᅵᅡᅵ/ # 아래애 (-oo instead of -ko)
       - xform/ᆞ/ᅡᅡ/
 
       - xform/ퟝ/ᆯᆯ/
