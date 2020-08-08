@@ -78,14 +78,14 @@ hanja:
   prefix: "H"
   suffix: "."
   tips: "〔漢〕"
-  __include: "soolegi_hanja.schema:/translator"
+  __include: "soolegi_hanja.schema:/translator?"
 
 old_korean:
   tag: "old_korean"
   prefix: "J"
   suffix: "."
   tips: "〔옛〕"
-  __include: "soolegi_yethangeul.schema:/translator"
+  __include: "soolegi_yethangeul.schema:/translator?"
 
 punctuator:
   import_preset: default
