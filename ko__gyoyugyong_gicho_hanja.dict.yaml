@@ -2,7 +2,7 @@
 # encoding: utf-8
 #
 # 《교육용 기초 한자》
-# https://ko.wiktionary.org/?oldid=4006751
+# https://ko.wiktionary.org/?oldid=4027926
 ---
 name: "ko__gyoyugyong_gicho_hanja"
 version: "alpha-4006751"
@@ -150,7 +150,7 @@ columns:
 1	庫	곳집_고
 1	孤	외로울_고
 1	鼓	북_고
-1	稿	볏집_고
+1	稿	볏짚_고
 1	顧	돌아볼_고
 2	谷	골_곡
 2	曲	굽을_곡
