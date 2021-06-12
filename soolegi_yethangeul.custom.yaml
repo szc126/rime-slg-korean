@@ -78,11 +78,16 @@ patch:
     - ascii_segmentor
     - matcher
     - affix_segmentor@pinyin
+    - affix_segmentor@yytpiq
+    - affix_segmentor@liangfen
     - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
+
   "engine/translators/+":
     - script_translator@pinyin
+    - script_translator@yytpiq
+    - table_translator@liangfen
 
   # pinyin, even without prefix
   # not what i want
@@ -92,8 +97,25 @@ patch:
   pinyin:
     tag: pinyin
     dictionary: terra_pinyin
+    prism: terra_pinyin
     prefix: "P"
+    suffix: "."
+
+  yytpiq:
+    tag: yytpiq
+    dictionary: jyut6ping3
+    prism: yytpiq
+    prefix: "Y"
+    suffix: "."
+
+  liangfen:
+    tag: liangfen
+    dictionary: liangfen
+    prism: liangfen
+    prefix: "L"
     suffix: "."
 
   "recognizer/patterns":
     pinyin: "P[a-z]*[.]?$"
+    yytpiq: "Y[a-z]*[.]?$"
+    liangfen: "L[a-z]*[.]?$"
